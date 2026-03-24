@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Accueil | UEL.MK — Portfolio</title>
+  <meta name="description" content="Portfolio UEL.MK — Designer montage photo & community manager" />
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root { color-scheme: dark; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; }
+
+    .grain::before{
+      content:"";
+      position:fixed;
+      inset:0;
+      pointer-events:none;
+      z-index:0;
+      opacity:.06;
+      mix-blend-mode: overlay;
+      background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)' opacity='.55'/%3E%3C/svg%3E");
+    }
+
+    :focus-visible { outline: 2px solid rgba(255,255,255,.7); outline-offset: 2px; }
+
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-thumb { background: #3f3f46; border-radius: 8px; }
+    ::-webkit-scrollbar-track { background: #0a0a0a; }
+
+    @keyframes floaty { 0%,100%{ transform: translateY(0); } 50%{ transform: translateY(-8px); } }
+    .floaty { animation: floaty 6s ease-in-out infinite; }
+
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+    .fade-in { animation: fadeIn 0.6s ease-out forwards; }
+  </style>
+</head>
+<body class="grain bg-zinc-950 text-zinc-100 selection:bg-white/20 selection:text-white">
+  <!-- Background accents -->
+  <div aria-hidden="true" class="fixed inset-0 -z-10">
+    <div class="absolute -top-24 -left-28 h-96 w-96 rounded-full bg-white/6 blur-3xl"></div>
+    <div class="absolute top-1/3 -right-32 h-[500px] w-[500px] rounded-full bg-white/5 blur-3xl"></div>
+    <div class="absolute bottom-0 left-1/3 h-80 w-80 rounded-full bg-white/4 blur-3xl"></div>
+  </div>
+
+  <!-- Header -->
+  <header class="sticky top-0 z-40 border-b border-white/10 bg-zinc-950/80 backdrop-blur-xl">
+    <div class="mx-auto flex max-w-6xl items-center justify-between px-4 py-4">
+      <a href="accueil.html" class="group inline-flex items-center gap-3">
+        <span class="relative grid h-11 w-11 place-items-center rounded-2xl border border-white/10 bg-white/5">
+          <span class="text-lg font-bold tracking-wider">U</span>
+          <span class="pointer-events-none absolute inset-0 rounded-2xl ring-1 ring-white/10 group-hover:ring-white/20 transition-all"></span>
+        </span>
+        <div class="leading-tight">
+          <div class="font-bold text-lg tracking-wide">UEL.MK</div>
+          <div class="text-xs text-zinc-400">Designer • CM • Créateur</div>
+        </div>
+      </a>
+
+      <nav class="hidden items-center gap-1 md:flex" aria-label="Navigation principale">
+        <a class="navlink rounded-xl px-4 py-2.5 text-sm font-medium text-white bg-white/10 transition-all" href="accueil.html">Accueil</a>
+        <a class="navlink rounded-xl px-4 py-2.5 text-sm font-medium text-zinc-300 hover:bg-white/5 hover:text-white transition-all" href="experiences.html">Expériences</a>
+        <a class="navlink rounded-xl px-4 py-2.5 text-sm font-medium text-zinc-300 hover:bg-white/5 hover:text-white transition-all" href="projets.html">Projets Réalisés</a>
+        <a class="navlink rounded-xl px-4 py-2.5 text-sm font-medium text-zinc-300 hover:bg-white/5 hover:text-white transition-all" href="apropos.html">À Propos</a>
+      </nav>
+
+      <div class="flex items-center gap-3">
+        <a href="apropos.html" class="hidden sm:inline-flex items-center justify-center rounded-xl bg-white px-5 py-2.5 text-sm font-semibold text-zinc-950 hover:bg-zinc-100 transition-all">
+          Me contacter
+        </a>
+        <button id="btnMenu" class="md:hidden inline-flex h-11 w-11 items-center justify-center rounded-xl border border-white/10 bg-white/5 hover:bg-white/10" aria-label="Ouvrir le menu" aria-expanded="false" type="button">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" class="text-white"><path d="M4 6h16M4 12h16M4 18h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div id="mobileMenu" class="md:hidden hidden border-t border-white/10 bg-zinc-950/95 backdrop-blur-xl">
+      <div class="mx-auto max-w-6xl px-4 py-4">
+        <div class="grid gap-2">
+          <a class="navlink rounded-xl px-4 py-3 text-sm font-medium text-zinc-200 hover:bg-white/5" href="accueil.html">Accueil</a>
+          <a class="navlink rounded-xl px-4 py-3 text-sm font-medium text-zinc-200 hover:bg-white/5" href="experiences.html">Expériences</a>
+          <a class="navlink rounded-xl px-4 py-3 text-sm font-medium text-zinc-200 hover:bg-white/5" href="projets.html">Projets Réalisés</a>
+          <a class="navlink rounded-xl px-4 py-3 text-sm font-medium text-zinc-200 hover:bg-white/5" href="apropos.html">À Propos</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="min-h-screen relative z-10">
+    <section class="min-h-screen">
+      <div class="mx-auto max-w-6xl px-4 py-16 md:py-24">
+        <div class="grid items-center gap-12 lg:grid-cols-2">
+          <div class="fade-in">
+            <div class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-zinc-300">
+              <span class="h-2 w-2 rounded-full bg-white/80 animate-pulse"></span>
+              <span>Portfolio UEL.MK</span>
+            </div>
+            
+            <h1 class="mt-8 text-5xl md:text-7xl font-bold tracking-tight leading-tight">
+              TOUT SAVOIR<br/>
+              <span class="text-zinc-400">SUR MOI</span>
+            </h1>
+            
+            <p class="mt-6 text-xl text-zinc-300 max-w-xl">
+              Pour apprendre à mieux me connaître
+            </p>
+
+            <div class="mt-10 flex flex-wrap gap-4">
+              <a href="experiences.html" class="inline-flex items-center justify-center rounded-2xl bg-white px-8 py-4 text-sm font-semibold text-zinc-950 hover:bg-zinc-100 transition-all">
+                Voir mes expériences
+                <svg class="ml-2" width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </a>
+              <a href="projets.html" class="inline-flex items-center justify-center rounded-2xl border border-white/15 bg-white/5 px-8 py-4 text-sm font-semibold text-white hover:bg-white/10 transition-all">
+                Mes projets
+              </a>
+            </div>
+          </div>
+
+          <div class="fade-in" style="animation-delay: 0.2s">
+            <div class="relative">
+              <div class="floaty relative overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-b from-white/10 to-white/5 p-8">
+                <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(255,255,255,0.15),transparent_60%)]"></div>
+                <div class="relative space-y-8">
+                  <!-- J'ai créé un média -->
+                  <div class="rounded-2xl border border-white/10 bg-zinc-950/40 p-6">
+                    <div class="flex items-center gap-3 mb-4">
+                      <div class="grid h-12 w-12 place-items-center rounded-xl bg-white text-zinc-950">
+                        <span class="text-2xl font-bold">U</span>
+                      </div>
+                      <h3 class="text-xl font-bold">J'ai créé un média</h3>
+                    </div>
+                    <p class="text-zinc-300 leading-relaxed">
+                      Cette année j'ai créé un média qui se nomme <span class="text-white font-semibold">ULM WORLD</span>. Ce média est destiné à un public jeune, qui aime la création et l'information pour réveiller en eux leurs créativités avec des <span class="text-white">interviews</span>, <span class="text-white">visuels</span> et <span class="text-white">collabs</span> inspirants.
+                    </p>
+                  </div>
+
+                  <!-- J'ai beaucoup d'imagination -->
+                  <div class="rounded-2xl border border-white/10 bg-zinc-950/40 p-6">
+                    <div class="flex items-center gap-3 mb-4">
+                      <div class="grid h-12 w-12 place-items-center rounded-xl bg-white text-zinc-950">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 1 1 7.072 0l-.548.547A3.374 3.374 0 0 0 14 18.469V19a2 2 0 1 1-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+                      </div>
+                      <h3 class="text-xl font-bold">J'ai beaucoup d'imagination</h3>
+                    </div>
+                    <p class="text-zinc-300 leading-relaxed">
+                      Je peux passer des heures à imaginer des choses, des visuels, des créations, etc... J'aime souvent dire que <span class="text-white font-semibold">mon imagination est comme une éponge</span> qui se sert de son environnement pour après prendre le meilleur côté.
+                    </p>
+                  </div>
+
+                  <!-- Éternel insatisfait -->
+                  <div class="rounded-2xl border border-white/10 bg-zinc-950/40 p-6">
+                    <div class="flex items-center gap-3 mb-4">
+                      <div class="grid h-12 w-12 place-items-center rounded-xl bg-white text-zinc-950">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                      </div>
+                      <h3 class="text-xl font-bold">Je suis un éternel insatisfait</h3>
+                    </div>
+                    <p class="text-zinc-300 leading-relaxed">
+                      Je ne suis jamais réellement satisfait de ce que je fais, ce qui m'emmène parfois à <span class="text-white font-semibold">me remettre beaucoup en question</span> pour pouvoir donner le meilleur de moi-même.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="border-t border-white/10 relative z-10">
+    <div class="mx-auto max-w-6xl px-4 py-10">
+      <div class="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
+        <div>
+          <div class="font-bold text-lg">UEL.MK</div>
+          <div class="text-sm text-zinc-400">Designer • Montage Photo • Community Manager</div>
+        </div>
+        <div class="flex flex-wrap gap-2 text-xs text-zinc-400">
+          <a class="rounded-full border border-white/10 bg-white/5 px-4 py-2 hover:bg-white/10 transition-all" href="accueil.html">Accueil</a>
+          <a class="rounded-full border border-white/10 bg-white/5 px-4 py-2 hover:bg-white/10 transition-all" href="experiences.html">Expériences</a>
+          <a class="rounded-full border border-white/10 bg-white/5 px-4 py-2 hover:bg-white/10 transition-all" href="projets.html">Projets</a>
+          <a class="rounded-full border border-white/10 bg-white/5 px-4 py-2 hover:bg-white/10 transition-all" href="apropos.html">À Propos</a>
+        </div>
+        <div class="text-sm text-zinc-400">
+          © <span id="year"></span> UEL.MK
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const qs = (sel) => document.querySelector(sel);
+    const btnMenu = qs('#btnMenu');
+    const mobileMenu = qs('#mobileMenu');
+    btnMenu?.addEventListener('click', () => {
+      const isOpen = btnMenu.getAttribute('aria-expanded') === 'true';
+      btnMenu.setAttribute('aria-expanded', String(!isOpen));
+      mobileMenu.classList.toggle('hidden');
+    });
+    qs('#year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

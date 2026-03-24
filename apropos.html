@@ -1,0 +1,256 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>À Propos | UEL.MK — Portfolio</title>
+  <meta name="description" content="À propos et contact | Designer Montage Photo & Community Manager" />
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root { color-scheme: dark; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; }
+
+    .grain::before{
+      content:"";
+      position:fixed;
+      inset:0;
+      pointer-events:none;
+      z-index:0;
+      opacity:.06;
+      mix-blend-mode: overlay;
+      background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)' opacity='.55'/%3E%3C/svg%3E");
+    }
+
+    :focus-visible { outline: 2px solid rgba(255,255,255,.7); outline-offset: 2px; }
+
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-thumb { background: #3f3f46; border-radius: 8px; }
+    ::-webkit-scrollbar-track { background: #0a0a0a; }
+
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+    .fade-in { animation: fadeIn 0.6s ease-out forwards; }
+  </style>
+</head>
+<body class="grain bg-zinc-950 text-zinc-100 selection:bg-white/20 selection:text-white">
+  <!-- Background accents -->
+  <div aria-hidden="true" class="fixed inset-0 -z-10">
+    <div class="absolute -top-24 -left-28 h-96 w-96 rounded-full bg-white/6 blur-3xl"></div>
+    <div class="absolute top-1/3 -right-32 h-[500px] w-[500px] rounded-full bg-white/5 blur-3xl"></div>
+    <div class="absolute bottom-0 left-1/3 h-80 w-80 rounded-full bg-white/4 blur-3xl"></div>
+  </div>
+
+  <!-- Header -->
+  <header class="sticky top-0 z-40 border-b border-white/10 bg-zinc-950/80 backdrop-blur-xl">
+    <div class="mx-auto flex max-w-6xl items-center justify-between px-4 py-4">
+      <a href="accueil.html" class="group inline-flex items-center gap-3">
+        <span class="relative grid h-11 w-11 place-items-center rounded-2xl border border-white/10 bg-white/5">
+          <span class="text-lg font-bold tracking-wider">U</span>
+          <span class="pointer-events-none absolute inset-0 rounded-2xl ring-1 ring-white/10 group-hover:ring-white/20 transition-all"></span>
+        </span>
+        <div class="leading-tight">
+          <div class="font-bold text-lg tracking-wide">UEL.MK</div>
+          <div class="text-xs text-zinc-400">Designer • CM • Créateur</div>
+        </div>
+      </a>
+
+      <nav class="hidden items-center gap-1 md:flex" aria-label="Navigation principale">
+        <a class="navlink rounded-xl px-4 py-2.5 text-sm font-medium text-zinc-300 hover:bg-white/5 hover:text-white transition-all" href="accueil.html">Accueil</a>
+        <a class="navlink rounded-xl px-4 py-2.5 text-sm font-medium text-zinc-300 hover:bg-white/5 hover:text-white transition-all" href="experiences.html">Expériences</a>
+        <a class="navlink rounded-xl px-4 py-2.5 text-sm font-medium text-zinc-300 hover:bg-white/5 hover:text-white transition-all" href="projets.html">Projets Réalisés</a>
+        <a class="navlink rounded-xl px-4 py-2.5 text-sm font-medium text-white bg-white/10 transition-all" href="apropos.html">À Propos</a>
+      </nav>
+
+      <div class="flex items-center gap-3">
+        <a href="apropos.html" class="hidden sm:inline-flex items-center justify-center rounded-xl bg-white px-5 py-2.5 text-sm font-semibold text-zinc-950 hover:bg-zinc-100 transition-all">
+          Me contacter
+        </a>
+        <button id="btnMenu" class="md:hidden inline-flex h-11 w-11 items-center justify-center rounded-xl border border-white/10 bg-white/5 hover:bg-white/10" aria-label="Ouvrir le menu" aria-expanded="false" type="button">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" class="text-white"><path d="M4 6h16M4 12h16M4 18h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div id="mobileMenu" class="md:hidden hidden border-t border-white/10 bg-zinc-950/95 backdrop-blur-xl">
+      <div class="mx-auto max-w-6xl px-4 py-4">
+        <div class="grid gap-2">
+          <a class="navlink rounded-xl px-4 py-3 text-sm font-medium text-zinc-200 hover:bg-white/5" href="accueil.html">Accueil</a>
+          <a class="navlink rounded-xl px-4 py-3 text-sm font-medium text-zinc-200 hover:bg-white/5" href="experiences.html">Expériences</a>
+          <a class="navlink rounded-xl px-4 py-3 text-sm font-medium text-zinc-200 hover:bg-white/5" href="projets.html">Projets Réalisés</a>
+          <a class="navlink rounded-xl px-4 py-3 text-sm font-medium text-zinc-200 hover:bg-white/5" href="apropos.html">À Propos</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="min-h-screen relative z-10">
+    <section class="min-h-screen">
+      <div class="mx-auto max-w-6xl px-4 py-16 md:py-24">
+        <div class="grid items-center gap-12 lg:grid-cols-2">
+          <div class="fade-in">
+            <div class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-zinc-300 mb-6">
+              <span class="h-2 w-2 rounded-full bg-white/80"></span>
+              Me contacter
+            </div>
+            <h2 class="text-4xl md:text-5xl font-bold tracking-tight mb-6">À Propos</h2>
+            <p class="text-zinc-300 text-lg leading-relaxed mb-8">
+              Designer montage photo et Community Manager passionné par la création visuelle et le storytelling digital. Je transforme vos idées en visuels impactants.
+            </p>
+
+            <!-- Contact Cards -->
+            <div class="space-y-4">
+              <div class="rounded-2xl border border-white/10 bg-white/5 p-6">
+                <div class="flex items-center justify-between gap-4">
+                  <div>
+                    <div class="text-sm text-zinc-400 mb-1">Email</div>
+                    <div class="font-semibold text-lg" id="emailValue">uelmk.contact@email.com</div>
+                  </div>
+                  <button id="btnCopyEmail" class="inline-flex items-center gap-2 rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-zinc-200 hover:bg-white/10 transition-all">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M9 9h10v10H9z" stroke="currentColor" stroke-width="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" stroke="currentColor" stroke-width="2"/></svg>
+                    Copier
+                  </button>
+                </div>
+              </div>
+
+              <div class="rounded-2xl border border-white/10 bg-white/5 p-6">
+                <div class="text-sm text-zinc-400 mb-3">Réseaux sociaux</div>
+                <div class="flex flex-wrap gap-3">
+                  <a href="#" target="_blank" rel="noreferrer" class="inline-flex items-center gap-2 rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-zinc-200 hover:bg-white/10 transition-all">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5Z" stroke="currentColor" stroke-width="2"/><path d="M12 17a5 5 0 1 0 0-10 5 5 0 0 0 0 10Z" stroke="currentColor" stroke-width="2"/><path d="M17.5 6.5h.01" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></svg>
+                    Instagram
+                  </a>
+                  <a href="#" target="_blank" rel="noreferrer" class="inline-flex items-center gap-2 rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-zinc-200 hover:bg-white/10 transition-all">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M4 7h16v10H4z" stroke="currentColor" stroke-width="2"/><path d="M7 7V5a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v2" stroke="currentColor" stroke-width="2"/><path d="M8 17h8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+                    Behance
+                  </a>
+                  <a href="#" target="_blank" rel="noreferrer" class="inline-flex items-center gap-2 rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-zinc-200 hover:bg-white/10 transition-all">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M16 8a6 6 0 0 1 6 6v7H2V14a6 6 0 0 1 6-6h8Z" stroke="currentColor" stroke-width="2"/><path d="M8 8V6a4 4 0 1 1 8 0v2" stroke="currentColor" stroke-width="2"/></svg>
+                    LinkedIn
+                  </a>
+                </div>
+              </div>
+
+              <div class="rounded-2xl border border-white/10 bg-white/5 p-6">
+                <div class="text-sm text-zinc-400 mb-1">Disponibilité</div>
+                <div class="font-semibold text-white">Lun–Sam • 09:00–20:00</div>
+                <div class="text-sm text-zinc-400 mt-1">Réponse généralement sous 24h</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Form -->
+          <div class="fade-in" style="animation-delay: 0.2s">
+            <form id="contactForm" method="POST" action="https://formspree.io/f/YOUR_FORM_ID" class="rounded-3xl border border-white/10 bg-white/5 p-8">
+              <h3 class="text-xl font-bold mb-2">Parlons de votre projet</h3>
+              <p class="text-zinc-400 mb-6">Remplissez ce formulaire et je vous répondrai rapidement.</p>
+
+              <div class="grid gap-4">
+                <label class="grid gap-2">
+                  <span class="text-sm text-zinc-200">Nom</span>
+                  <input id="name" name="name" class="w-full rounded-xl border border-white/10 bg-zinc-950/40 px-4 py-3 text-sm text-white placeholder:text-zinc-500 focus:border-white/30 focus:outline-none transition-all" placeholder="Votre nom" autocomplete="name" />
+                </label>
+                <label class="grid gap-2">
+                  <span class="text-sm text-zinc-200">Email</span>
+                  <input id="email" name="email" type="email" class="w-full rounded-xl border border-white/10 bg-zinc-950/40 px-4 py-3 text-sm text-white placeholder:text-zinc-500 focus:border-white/30 focus:outline-none transition-all" placeholder="votre@email.com" autocomplete="email" />
+                </label>
+                <label class="grid gap-2">
+                  <span class="text-sm text-zinc-200">Sujet</span>
+                  <select id="subject" name="subject" class="w-full rounded-xl border border-white/10 bg-zinc-950/40 px-4 py-3 text-sm text-white focus:border-white/30 focus:outline-none transition-all">
+                    <option value="">Choisir un sujet...</option>
+                    <option value="Projet de montage photo">Projet de montage photo</option>
+                    <option value="Community management">Community management</option>
+                    <option value="Création de contenu">Création de contenu</option>
+                    <option value="Direction artistique">Direction artistique</option>
+                    <option value="Autre">Autre</option>
+                  </select>
+                </label>
+                <label class="grid gap-2">
+                  <span class="text-sm text-zinc-200">Message</span>
+                  <textarea id="message" name="message" rows="4" class="w-full resize-y rounded-xl border border-white/10 bg-zinc-950/40 px-4 py-3 text-sm text-white placeholder:text-zinc-500 focus:border-white/30 focus:outline-none transition-all" placeholder="Décrivez votre projet..."></textarea>
+                </label>
+              </div>
+
+              <div class="mt-6 flex flex-wrap items-center justify-between gap-3">
+                <button type="button" id="btnFillDemo" class="rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm font-semibold text-zinc-200 hover:bg-white/10 transition-all">Remplir démo</button>
+                <button type="submit" class="rounded-xl bg-white px-6 py-3 text-sm font-semibold text-zinc-950 hover:bg-zinc-100 transition-all">Envoyer</button>
+              </div>
+
+              <div id="formHint" class="mt-4 hidden rounded-xl border border-white/10 bg-zinc-950/40 p-4 text-sm text-zinc-200"></div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="border-t border-white/10 relative z-10">
+    <div class="mx-auto max-w-6xl px-4 py-10">
+      <div class="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
+        <div>
+          <div class="font-bold text-lg">UEL.MK</div>
+          <div class="text-sm text-zinc-400">Designer • Montage Photo • Community Manager</div>
+        </div>
+        <div class="flex flex-wrap gap-2 text-xs text-zinc-400">
+          <a class="rounded-full border border-white/10 bg-white/5 px-4 py-2 hover:bg-white/10 transition-all" href="accueil.html">Accueil</a>
+          <a class="rounded-full border border-white/10 bg-white/5 px-4 py-2 hover:bg-white/10 transition-all" href="experiences.html">Expériences</a>
+          <a class="rounded-full border border-white/10 bg-white/5 px-4 py-2 hover:bg-white/10 transition-all" href="projets.html">Projets</a>
+          <a class="rounded-full border border-white/10 bg-white/5 px-4 py-2 hover:bg-white/10 transition-all" href="apropos.html">À Propos</a>
+        </div>
+        <div class="text-sm text-zinc-400">
+          © <span id="year"></span> UEL.MK
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Toast -->
+  <div id="toast" class="fixed bottom-4 left-1/2 z-50 hidden -translate-x-1/2">
+    <div class="rounded-2xl border border-white/10 bg-zinc-950/90 px-5 py-3 text-sm text-zinc-200 backdrop-blur shadow-xl">
+      <span id="toastText">Copié !</span>
+    </div>
+  </div>
+
+  <script>
+    const qs = (sel) => document.querySelector(sel);
+    
+    // Toast
+    const toast = (msg) => {
+      const t = qs('#toast');
+      qs('#toastText').textContent = msg;
+      t.classList.remove('hidden');
+      clearTimeout(window.toastTimer);
+      window.toastTimer = setTimeout(() => t.classList.add('hidden'), 2000);
+    };
+
+    // Mobile Menu
+    const btnMenu = qs('#btnMenu');
+    const mobileMenu = qs('#mobileMenu');
+    btnMenu?.addEventListener('click', () => {
+      const isOpen = btnMenu.getAttribute('aria-expanded') === 'true';
+      btnMenu.setAttribute('aria-expanded', String(!isOpen));
+      mobileMenu.classList.toggle('hidden');
+    });
+
+    // Copy Email
+    qs('#btnCopyEmail')?.addEventListener('click', () => {
+      const email = qs('#emailValue').textContent;
+      navigator.clipboard.writeText(email).then(() => toast('Email copié !'));
+    });
+
+    // Demo Form
+    qs('#btnFillDemo')?.addEventListener('click', () => {
+      qs('#name').value = 'Jean Dupont';
+      qs('#email').value = 'jean@example.com';
+      qs('#subject').value = 'Community management';
+      qs('#message').value = 'Je suis intéressé par vos services de community management...';
+    });
+
+    // Year
+    qs('#year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

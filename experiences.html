@@ -1,0 +1,290 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Expériences | UEL.MK — Portfolio</title>
+  <meta name="description" content="Mes expériences professionnelles et collaborations | UEL.MK" />
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root { color-scheme: dark; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; }
+
+    .grain::before{
+      content:"";
+      position:fixed;
+      inset:0;
+      pointer-events:none;
+      z-index:0;
+      opacity:.06;
+      mix-blend-mode: overlay;
+      background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)' opacity='.55'/%3E%3C/svg%3E");
+    }
+
+    :focus-visible { outline: 2px solid rgba(255,255,255,.7); outline-offset: 2px; }
+
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-thumb { background: #3f3f46; border-radius: 8px; }
+    ::-webkit-scrollbar-track { background: #0a0a0a; }
+
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+    .fade-in { animation: fadeIn 0.6s ease-out forwards; }
+  </style>
+</head>
+<body class="grain bg-zinc-950 text-zinc-100 selection:bg-white/20 selection:text-white">
+  <!-- Background accents -->
+  <div aria-hidden="true" class="fixed inset-0 -z-10">
+    <div class="absolute -top-24 -left-28 h-96 w-96 rounded-full bg-white/6 blur-3xl"></div>
+    <div class="absolute top-1/3 -right-32 h-[500px] w-[500px] rounded-full bg-white/5 blur-3xl"></div>
+    <div class="absolute bottom-0 left-1/3 h-80 w-80 rounded-full bg-white/4 blur-3xl"></div>
+  </div>
+
+  <!-- Header -->
+  <header class="sticky top-0 z-40 border-b border-white/10 bg-zinc-950/80 backdrop-blur-xl">
+    <div class="mx-auto flex max-w-6xl items-center justify-between px-4 py-4">
+      <a href="accueil.html" class="group inline-flex items-center gap-3">
+        <span class="relative grid h-11 w-11 place-items-center rounded-2xl border border-white/10 bg-white/5">
+          <span class="text-lg font-bold tracking-wider">U</span>
+          <span class="pointer-events-none absolute inset-0 rounded-2xl ring-1 ring-white/10 group-hover:ring-white/20 transition-all"></span>
+        </span>
+        <div class="leading-tight">
+          <div class="font-bold text-lg tracking-wide">UEL.MK</div>
+          <div class="text-xs text-zinc-400">Designer • CM • Créateur</div>
+        </div>
+      </a>
+
+      <nav class="hidden items-center gap-1 md:flex" aria-label="Navigation principale">
+        <a class="navlink rounded-xl px-4 py-2.5 text-sm font-medium text-zinc-300 hover:bg-white/5 hover:text-white transition-all" href="accueil.html">Accueil</a>
+        <a class="navlink rounded-xl px-4 py-2.5 text-sm font-medium text-white bg-white/10 transition-all" href="experiences.html">Expériences</a>
+        <a class="navlink rounded-xl px-4 py-2.5 text-sm font-medium text-zinc-300 hover:bg-white/5 hover:text-white transition-all" href="projets.html">Projets Réalisés</a>
+        <a class="navlink rounded-xl px-4 py-2.5 text-sm font-medium text-zinc-300 hover:bg-white/5 hover:text-white transition-all" href="apropos.html">À Propos</a>
+      </nav>
+
+      <div class="flex items-center gap-3">
+        <a href="apropos.html" class="hidden sm:inline-flex items-center justify-center rounded-xl bg-white px-5 py-2.5 text-sm font-semibold text-zinc-950 hover:bg-zinc-100 transition-all">
+          Me contacter
+        </a>
+        <button id="btnMenu" class="md:hidden inline-flex h-11 w-11 items-center justify-center rounded-xl border border-white/10 bg-white/5 hover:bg-white/10" aria-label="Ouvrir le menu" aria-expanded="false" type="button">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" class="text-white"><path d="M4 6h16M4 12h16M4 18h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div id="mobileMenu" class="md:hidden hidden border-t border-white/10 bg-zinc-950/95 backdrop-blur-xl">
+      <div class="mx-auto max-w-6xl px-4 py-4">
+        <div class="grid gap-2">
+          <a class="navlink rounded-xl px-4 py-3 text-sm font-medium text-zinc-200 hover:bg-white/5" href="accueil.html">Accueil</a>
+          <a class="navlink rounded-xl px-4 py-3 text-sm font-medium text-zinc-200 hover:bg-white/5" href="experiences.html">Expériences</a>
+          <a class="navlink rounded-xl px-4 py-3 text-sm font-medium text-zinc-200 hover:bg-white/5" href="projets.html">Projets Réalisés</a>
+          <a class="navlink rounded-xl px-4 py-3 text-sm font-medium text-zinc-200 hover:bg-white/5" href="apropos.html">À Propos</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="min-h-screen relative z-10 bg-gradient-to-b from-transparent via-zinc-950/50 to-transparent">
+    <section class="min-h-screen">
+      <div class="mx-auto max-w-6xl px-4 py-16 md:py-24">
+        <div class="text-center mb-16 fade-in">
+          <div class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-zinc-300 mb-6">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M21 13.255A23.931 23.931 0 0 1 12 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2m4 6h.01M5 20h14a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2z" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+            Mon Parcours
+          </div>
+          <h2 class="text-4xl md:text-5xl font-bold tracking-tight">Expériences</h2>
+          <p class="mt-4 text-zinc-400 max-w-2xl mx-auto">Un aperçu de mon parcours professionnel et de mes différentes collaborations.</p>
+        </div>
+
+        <div class="space-y-8">
+          <!-- ICC Association -->
+          <div class="fade-in rounded-3xl border border-white/10 bg-white/5 p-8 md:p-10 hover:bg-white/7 transition-all">
+            <div class="flex flex-col md:flex-row md:items-start md:justify-between gap-6">
+              <div class="flex-1">
+                <div class="flex items-center gap-4 mb-4">
+                  <div class="grid h-16 w-16 place-items-center rounded-2xl bg-white text-zinc-950">
+                    <span class="text-2xl font-bold">ICC</span>
+                  </div>
+                  <div>
+                    <h3 class="text-2xl font-bold">ICC Association</h3>
+                    <div class="flex items-center gap-3 mt-1">
+                      <span class="inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-zinc-300">
+                        <span class="h-1.5 w-1.5 rounded-full bg-green-500"></span>
+                        2023 — Présent
+                      </span>
+                      <span class="text-sm text-zinc-500">Créée en 2001 par YVAN CASTANOU</span>
+                    </div>
+                  </div>
+                </div>
+                
+                <p class="text-zinc-300 leading-relaxed mb-6">
+                  Association de formation à la valorisation de l'image personnelle. Disposant désormais de <span class="text-white font-semibold">plus de 120 entreprises</span> à travers le monde, elle est connue pour ses programmes inspirants mettant les jeunes en avant.
+                </p>
+                
+                <div class="rounded-2xl border border-white/10 bg-zinc-950/40 p-6">
+                  <div class="flex items-center gap-2 mb-3">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" class="text-white"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    <span class="font-semibold text-white">Mon impact</span>
+                  </div>
+                  <p class="text-zinc-300">
+                    Association qui m'a fait confiance et qui m'a fait découvrir un nouveau monde en terme de création. Dans cette association j'ai pu élargir ma palette créative et mes talents ont pu être mis en valeurs lors de projets visuels et de communication.
+                  </p>
+                </div>
+              </div>
+
+              <div class="flex flex-wrap gap-2">
+                <span class="rounded-xl border border-white/10 bg-white/5 px-4 py-2 text-sm text-zinc-300">Formation</span>
+                <span class="rounded-xl border border-white/10 bg-white/5 px-4 py-2 text-sm text-zinc-300">Création visuelle</span>
+                <span class="rounded-xl border border-white/10 bg-white/5 px-4 py-2 text-sm text-zinc-300">Communication</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Bangou Lunch -->
+          <div class="fade-in rounded-3xl border border-white/10 bg-white/5 p-8 md:p-10 hover:bg-white/7 transition-all" style="animation-delay: 0.1s">
+            <div class="flex flex-col md:flex-row md:items-start md:justify-between gap-6">
+              <div class="flex-1">
+                <div class="flex items-center gap-4 mb-4">
+                  <div class="grid h-16 w-16 place-items-center rounded-2xl bg-white text-zinc-950">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none"><path d="M18 8h1a4 4 0 0 1 0 8h-1M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M6 1v3M10 1v3M14 1v3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+                  </div>
+                  <div>
+                    <h3 class="text-2xl font-bold">Bangou Lunch</h3>
+                    <p class="text-zinc-400">Restaurant afro-parisien</p>
+                    <span class="inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-zinc-300 mt-2">
+                      <span class="h-1.5 w-1.5 rounded-full bg-white/80"></span>
+                      Freelance Community Manager
+                    </span>
+                  </div>
+                </div>
+
+                <div class="mt-6 grid gap-4 md:grid-cols-3">
+                  <div class="rounded-xl border border-white/10 bg-zinc-950/40 p-5 text-center">
+                    <div class="grid h-12 w-12 place-items-center rounded-xl bg-white/5 mx-auto mb-3">
+                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="text-white"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+                    </div>
+                    <div class="font-semibold text-white">Communication</div>
+                    <div class="text-sm text-zinc-400 mt-1">Digitale & réseaux</div>
+                  </div>
+                  <div class="rounded-xl border border-white/10 bg-zinc-950/40 p-5 text-center">
+                    <div class="grid h-12 w-12 place-items-center rounded-xl bg-white/5 mx-auto mb-3">
+                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="text-white"><path d="M4 16l4.586-4.586a2 2 0 0 1 2.828 0L16 16m-2-2l1.586-1.586a2 2 0 0 1 2.828 0L20 14m-6-6h.01M6 20h12a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2z" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+                    </div>
+                    <div class="font-semibold text-white">Création</div>
+                    <div class="text-sm text-zinc-400 mt-1">Contenus visuels</div>
+                  </div>
+                  <div class="rounded-xl border border-white/10 bg-zinc-950/40 p-5 text-center">
+                    <div class="grid h-12 w-12 place-items-center rounded-xl bg-white/5 mx-auto mb-3">
+                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="text-white"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" stroke="currentColor" stroke-width="2"/><rect x="2" y="9" width="4" height="12" stroke="currentColor" stroke-width="2"/><circle cx="4" cy="4" r="2" stroke="currentColor" stroke-width="2"/></svg>
+                    </div>
+                    <div class="font-semibold text-white">Gestion</div>
+                    <div class="text-sm text-zinc-400 mt-1">Réseaux sociaux</div>
+                  </div>
+                </div>
+
+                <p class="text-zinc-300 mt-6">
+                  En parallèle de mes études, je travaillais en freelance comme Community Manager pour le restaurant afro-parisien Bangou Lunch, où j'étais chargé de la communication digitale, de la création de contenus visuels et de la gestion des réseaux sociaux.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- OH MY CARE -->
+          <div class="fade-in rounded-3xl border border-white/10 bg-white/5 p-8 md:p-10 hover:bg-white/7 transition-all" style="animation-delay: 0.2s">
+            <div class="flex flex-col md:flex-row md:items-start md:justify-between gap-6">
+              <div class="flex-1">
+                <div class="flex items-center gap-4 mb-4">
+                  <div class="grid h-16 w-16 place-items-center rounded-2xl bg-white text-zinc-950">
+                    <span class="text-xl font-bold">OMC</span>
+                  </div>
+                  <div>
+                    <h3 class="text-2xl font-bold">OH MY CARE</h3>
+                    <span class="inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-zinc-300 mt-2">
+                      <span class="h-1.5 w-1.5 rounded-full bg-white/80"></span>
+                      Collaborations multiples
+                    </span>
+                  </div>
+                </div>
+                <p class="text-zinc-300">
+                  De plus, j'ai pu mettre mes talents à la disposition d'autres entreprises comme OH MY CARE, pour des missions de création visuelle et de gestion de communauté.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Créations pour auteurs -->
+          <div class="fade-in rounded-3xl border border-white/10 bg-gradient-to-br from-white/10 to-white/5 p-8 md:p-10" style="animation-delay: 0.3s">
+            <div class="text-center mb-8">
+              <div class="inline-flex items-center gap-2 mb-4">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="text-white"><path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                <h3 class="text-xl font-bold">CERTAINES DE MES CRÉATIONS POUR DES AUTEURS</h3>
+              </div>
+            </div>
+            
+            <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+              <div class="rounded-2xl border border-white/10 bg-zinc-950/40 p-6 text-center hover:bg-white/5 transition-all">
+                <div class="grid h-20 w-20 place-items-center rounded-2xl bg-white mx-auto mb-4">
+                  <svg width="36" height="36" viewBox="0 0 24 24" fill="none" class="text-zinc-950"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" stroke="currentColor" stroke-width="2"/></svg>
+                </div>
+                <h4 class="font-bold text-lg mb-2">Du Chaos À L'Ordre Divin</h4>
+                <p class="text-sm text-zinc-400">Livre — Design de couverture & visuels promotionnels</p>
+              </div>
+              
+              <div class="rounded-2xl border border-white/10 bg-zinc-950/40 p-6 text-center hover:bg-white/5 transition-all">
+                <div class="grid h-20 w-20 place-items-center rounded-2xl bg-white mx-auto mb-4">
+                  <svg width="36" height="36" viewBox="0 0 24 24" fill="none" class="text-zinc-950"><path d="M15 10l4.553-2.276A1 1 0 0 1 21 8.618v6.764a1 1 0 0 1-1.447.894L15 14M5 18h8a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2z" stroke="currentColor" stroke-width="2"/></svg>
+                </div>
+                <h4 class="font-bold text-lg mb-2">ULM WORLD</h4>
+                <p class="text-sm text-zinc-400">Mon média — Interviews, Covers, Reels & Posts</p>
+              </div>
+              
+              <div class="rounded-2xl border border-white/10 bg-zinc-950/40 p-6 text-center hover:bg-white/5 transition-all">
+                <div class="grid h-20 w-20 place-items-center rounded-2xl bg-white mx-auto mb-4">
+                  <svg width="36" height="36" viewBox="0 0 24 24" fill="none" class="text-zinc-950"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </div>
+                <h4 class="font-bold text-lg mb-2">Designer</h4>
+                <p class="text-sm text-zinc-400">Montage photo, Direction artistique & Création</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="border-t border-white/10 relative z-10">
+    <div class="mx-auto max-w-6xl px-4 py-10">
+      <div class="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
+        <div>
+          <div class="font-bold text-lg">UEL.MK</div>
+          <div class="text-sm text-zinc-400">Designer • Montage Photo • Community Manager</div>
+        </div>
+        <div class="flex flex-wrap gap-2 text-xs text-zinc-400">
+          <a class="rounded-full border border-white/10 bg-white/5 px-4 py-2 hover:bg-white/10 transition-all" href="accueil.html">Accueil</a>
+          <a class="rounded-full border border-white/10 bg-white/5 px-4 py-2 hover:bg-white/10 transition-all" href="experiences.html">Expériences</a>
+          <a class="rounded-full border border-white/10 bg-white/5 px-4 py-2 hover:bg-white/10 transition-all" href="projets.html">Projets</a>
+          <a class="rounded-full border border-white/10 bg-white/5 px-4 py-2 hover:bg-white/10 transition-all" href="apropos.html">À Propos</a>
+        </div>
+        <div class="text-sm text-zinc-400">
+          © <span id="year"></span> UEL.MK
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const qs = (sel) => document.querySelector(sel);
+    const btnMenu = qs('#btnMenu');
+    const mobileMenu = qs('#mobileMenu');
+    btnMenu?.addEventListener('click', () => {
+      const isOpen = btnMenu.getAttribute('aria-expanded') === 'true';
+      btnMenu.setAttribute('aria-expanded', String(!isOpen));
+      mobileMenu.classList.toggle('hidden');
+    });
+    qs('#year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

@@ -1,0 +1,284 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Projets | UEL.MK — Portfolio</title>
+  <meta name="description" content="Mes projets réalisés | Designer Montage Photo & Community Manager" />
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root { color-scheme: dark; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; }
+
+    .grain::before{
+      content:"";
+      position:fixed;
+      inset:0;
+      pointer-events:none;
+      z-index:0;
+      opacity:.06;
+      mix-blend-mode: overlay;
+      background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)' opacity='.55'/%3E%3C/svg%3E");
+    }
+
+    :focus-visible { outline: 2px solid rgba(255,255,255,.7); outline-offset: 2px; }
+
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-thumb { background: #3f3f46; border-radius: 8px; }
+    ::-webkit-scrollbar-track { background: #0a0a0a; }
+
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+    .fade-in { animation: fadeIn 0.6s ease-out forwards; }
+  </style>
+</head>
+<body class="grain bg-zinc-950 text-zinc-100 selection:bg-white/20 selection:text-white">
+  <!-- Background accents -->
+  <div aria-hidden="true" class="fixed inset-0 -z-10">
+    <div class="absolute -top-24 -left-28 h-96 w-96 rounded-full bg-white/6 blur-3xl"></div>
+    <div class="absolute top-1/3 -right-32 h-[500px] w-[500px] rounded-full bg-white/5 blur-3xl"></div>
+    <div class="absolute bottom-0 left-1/3 h-80 w-80 rounded-full bg-white/4 blur-3xl"></div>
+  </div>
+
+  <!-- Header -->
+  <header class="sticky top-0 z-40 border-b border-white/10 bg-zinc-950/80 backdrop-blur-xl">
+    <div class="mx-auto flex max-w-6xl items-center justify-between px-4 py-4">
+      <a href="accueil.html" class="group inline-flex items-center gap-3">
+        <span class="relative grid h-11 w-11 place-items-center rounded-2xl border border-white/10 bg-white/5">
+          <span class="text-lg font-bold tracking-wider">U</span>
+          <span class="pointer-events-none absolute inset-0 rounded-2xl ring-1 ring-white/10 group-hover:ring-white/20 transition-all"></span>
+        </span>
+        <div class="leading-tight">
+          <div class="font-bold text-lg tracking-wide">UEL.MK</div>
+          <div class="text-xs text-zinc-400">Designer • CM • Créateur</div>
+        </div>
+      </a>
+
+      <nav class="hidden items-center gap-1 md:flex" aria-label="Navigation principale">
+        <a class="navlink rounded-xl px-4 py-2.5 text-sm font-medium text-zinc-300 hover:bg-white/5 hover:text-white transition-all" href="accueil.html">Accueil</a>
+        <a class="navlink rounded-xl px-4 py-2.5 text-sm font-medium text-zinc-300 hover:bg-white/5 hover:text-white transition-all" href="experiences.html">Expériences</a>
+        <a class="navlink rounded-xl px-4 py-2.5 text-sm font-medium text-white bg-white/10 transition-all" href="projets.html">Projets Réalisés</a>
+        <a class="navlink rounded-xl px-4 py-2.5 text-sm font-medium text-zinc-300 hover:bg-white/5 hover:text-white transition-all" href="apropos.html">À Propos</a>
+      </nav>
+
+      <div class="flex items-center gap-3">
+        <a href="apropos.html" class="hidden sm:inline-flex items-center justify-center rounded-xl bg-white px-5 py-2.5 text-sm font-semibold text-zinc-950 hover:bg-zinc-100 transition-all">
+          Me contacter
+        </a>
+        <button id="btnMenu" class="md:hidden inline-flex h-11 w-11 items-center justify-center rounded-xl border border-white/10 bg-white/5 hover:bg-white/10" aria-label="Ouvrir le menu" aria-expanded="false" type="button">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" class="text-white"><path d="M4 6h16M4 12h16M4 18h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div id="mobileMenu" class="md:hidden hidden border-t border-white/10 bg-zinc-950/95 backdrop-blur-xl">
+      <div class="mx-auto max-w-6xl px-4 py-4">
+        <div class="grid gap-2">
+          <a class="navlink rounded-xl px-4 py-3 text-sm font-medium text-zinc-200 hover:bg-white/5" href="accueil.html">Accueil</a>
+          <a class="navlink rounded-xl px-4 py-3 text-sm font-medium text-zinc-200 hover:bg-white/5" href="experiences.html">Expériences</a>
+          <a class="navlink rounded-xl px-4 py-3 text-sm font-medium text-zinc-200 hover:bg-white/5" href="projets.html">Projets Réalisés</a>
+          <a class="navlink rounded-xl px-4 py-3 text-sm font-medium text-zinc-200 hover:bg-white/5" href="apropos.html">À Propos</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="min-h-screen relative z-10 bg-gradient-to-b from-transparent via-zinc-950/50 to-transparent">
+    <section class="min-h-screen">
+      <div class="mx-auto max-w-6xl px-4 py-16 md:py-24">
+        <div class="text-center mb-16 fade-in">
+          <div class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-zinc-300 mb-6">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M4 16l4.586-4.586a2 2 0 0 1 2.828 0L16 16m-2-2l1.586-1.586a2 2 0 0 1 2.828 0L20 14m-6-6h.01M6 20h12a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2z" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+            Portfolio
+          </div>
+          <h2 class="text-4xl md:text-5xl font-bold tracking-tight">Projets Réalisés</h2>
+          <p class="mt-4 text-zinc-400 max-w-2xl mx-auto">Découvrez une sélection de mes meilleurs projets et créations.</p>
+        </div>
+
+        <!-- Filters -->
+        <div class="flex flex-wrap justify-center gap-3 mb-12 fade-in">
+          <button class="filterBtn rounded-full border border-white/10 bg-white/10 px-6 py-2.5 text-sm font-medium text-white" data-filter="all">Tous</button>
+          <button class="filterBtn rounded-full border border-white/10 bg-white/5 px-6 py-2.5 text-sm font-medium text-zinc-300 hover:bg-white/10 transition-all" data-filter="ulm">ULM WORLD</button>
+          <button class="filterBtn rounded-full border border-white/10 bg-white/5 px-6 py-2.5 text-sm font-medium text-zinc-300 hover:bg-white/10 transition-all" data-filter="ICC">ICC</button>
+          <button class="filterBtn rounded-full border border-white/10 bg-white/5 px-6 py-2.5 text-sm font-medium text-zinc-300 hover:bg-white/10 transition-all" data-filter="restaurant">Restaurant</button>
+          <button class="filterBtn rounded-full border border-white/10 bg-white/5 px-6 py-2.5 text-sm font-medium text-zinc-300 hover:bg-white/10 transition-all" data-filter="auteur">Auteurs</button>
+        </div>
+
+        <!-- Grid -->
+        <div id="projectsGrid" class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          <!-- Projects will be generated by JS -->
+        </div>
+
+        <!-- CTA -->
+        <div class="mt-16 rounded-3xl border border-white/10 bg-white/5 p-8 md:p-10 text-center fade-in">
+          <h3 class="text-2xl font-bold mb-4">Un projet en tête ?</h3>
+          <p class="text-zinc-300 mb-6 max-w-xl mx-auto">Discutons de votre projet de création, de community management ou de direction artistique.</p>
+          <a href="apropos.html" class="inline-flex items-center justify-center rounded-2xl bg-white px-8 py-4 text-sm font-semibold text-zinc-950 hover:bg-zinc-100 transition-all">
+            Me contacter
+            <svg class="ml-2" width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="border-t border-white/10 relative z-10">
+    <div class="mx-auto max-w-6xl px-4 py-10">
+      <div class="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
+        <div>
+          <div class="font-bold text-lg">UEL.MK</div>
+          <div class="text-sm text-zinc-400">Designer • Montage Photo • Community Manager</div>
+        </div>
+        <div class="flex flex-wrap gap-2 text-xs text-zinc-400">
+          <a class="rounded-full border border-white/10 bg-white/5 px-4 py-2 hover:bg-white/10 transition-all" href="accueil.html">Accueil</a>
+          <a class="rounded-full border border-white/10 bg-white/5 px-4 py-2 hover:bg-white/10 transition-all" href="experiences.html">Expériences</a>
+          <a class="rounded-full border border-white/10 bg-white/5 px-4 py-2 hover:bg-white/10 transition-all" href="projets.html">Projets</a>
+          <a class="rounded-full border border-white/10 bg-white/5 px-4 py-2 hover:bg-white/10 transition-all" href="apropos.html">À Propos</a>
+        </div>
+        <div class="text-sm text-zinc-400">
+          © <span id="year"></span> UEL.MK
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Modal -->
+  <div id="modal" class="fixed inset-0 z-50 hidden">
+    <div class="absolute inset-0 bg-black/80 backdrop-blur-sm"></div>
+    <div class="relative mx-auto flex h-full max-w-5xl items-end p-4 sm:items-center">
+      <div class="w-full overflow-hidden rounded-3xl border border-white/10 bg-zinc-950">
+        <div class="flex items-center justify-between border-b border-white/10 bg-white/5 px-6 py-4">
+          <div>
+            <div id="modalTitle" class="font-bold text-lg">Projet</div>
+            <div id="modalCategory" class="text-xs text-zinc-400">Catégorie</div>
+          </div>
+          <button id="btnCloseModal" class="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-white/10 bg-white/5 hover:bg-white/10" aria-label="Fermer" type="button">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M6 6l12 12M18 6l-12 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          </button>
+        </div>
+
+        <div class="grid gap-0 md:grid-cols-2">
+          <div class="border-b border-white/10 md:border-b-0 md:border-r border-white/10">
+            <img id="modalImg" alt="Aperçu du projet" class="h-80 w-full object-cover md:h-full" />
+          </div>
+          <div class="p-6">
+            <div class="text-sm text-zinc-300" id="modalDesc"></div>
+            <div class="mt-5">
+              <div class="text-xs text-zinc-400 mb-2">Livrables</div>
+              <ul id="modalDeliverables" class="space-y-2 text-sm text-zinc-200"></ul>
+            </div>
+            <div class="mt-6">
+              <a href="apropos.html" class="inline-flex items-center justify-center rounded-xl bg-white px-5 py-3 text-sm font-semibold text-zinc-950 hover:bg-zinc-100 transition-all">Me contacter pour ce type de projet</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const qs = (sel) => document.querySelector(sel);
+    const qsa = (sel) => Array.from(document.querySelectorAll(sel));
+
+    // Mobile Menu
+    const btnMenu = qs('#btnMenu');
+    const mobileMenu = qs('#mobileMenu');
+    btnMenu?.addEventListener('click', () => {
+      const isOpen = btnMenu.getAttribute('aria-expanded') === 'true';
+      btnMenu.setAttribute('aria-expanded', String(!isOpen));
+      mobileMenu.classList.toggle('hidden');
+    });
+
+    // Projects Data
+    const projects = [
+      { id: 'p1', category: 'ulm', title: 'ULM WORLD — Interview Cover', tags: ['Interview', 'Cover'], desc: 'Création de visuels pour les interviews du média ULM WORLD.', image: 'images/ulm-1.jpg', deliverables: ['Cover Instagram', 'Story template', 'Reel thumbnail'] },
+      { id: 'p2', category: 'ulm', title: 'ULM WORLD — Promo Post', tags: ['Promo', 'Post'], desc: 'Visuels promotionnels pour les contenus du média.', image: 'images/ulm-2.jpg',deliverables: ['Posts feed', 'Stories animées', 'Affiches promo'] },
+      { id: 'p3', category: 'ulm', title: 'ULM WORLD — Collabs', tags: ['Collaboration'], desc: 'Créations pour les collaborations avec partenaires.', image: 'images/ulm-3.jpg', deliverables: ['Visuels collab', 'Posts partenaires'] },
+      { id: 'p4', category: 'ICC', title: 'ICC — Formation', tags: ['Formation'], desc: 'Visuels de communication pour les programmes.', image: 'images/icc-1.png', deliverables: ['Affiche programme', 'Visuels réseaux'] },
+      { id: 'p5', category: 'ICC', title: 'ICC — Événementiel', tags: ['Événement'], desc: 'Créations pour les événements de ICC.', image: 'images/icc-2.jpg', deliverables: ['Banners web', 'Stories événement'] },
+      { id: 'p6', category: 'restaurant', title: 'Bangou Lunch — Menu Digital', tags: ['Restaurant'], desc: 'Menu digital et visuels de présentation.', image: 'images/bangou.png', deliverables: ['Menu digital', 'Visuels plats'] },
+      { id: 'p7', category: 'restaurant', title: 'Bangou Lunch — Social Media', tags: ['CM', 'Contenu'], desc: 'Gestion complète des réseaux sociaux.', image: 'images/bangou.png', deliverables: ['Calendrier contenu', 'Posts créatifs'] },
+      { id: 'p8', category: 'auteur', title: 'Du Chaos À L\'Ordre Divin', tags: ['Livre'], desc: 'Design de la couverture du livre.', image: 'images/livre-1.jpg', deliverables: ['Couverture livre', 'Visuels promo'] }
+    ];
+
+    const categoryLabel = (cat) => ({ 'ulm': 'ULM WORLD', 'ICC': 'ICC Association', 'restaurant': 'Restaurant & Food', 'auteur': 'Auteurs & Édition' }[cat] || cat);
+
+    // Render Projects
+    const renderProjects = (filter = 'all') => {
+      const grid = qs('#projectsGrid');
+      grid.innerHTML = '';
+      
+      const filtered = filter === 'all' ? projects : projects.filter(p => p.category === filter);
+      const categories = [...new Set(filtered.map(p => p.category))];
+      
+      categories.forEach(cat => {
+        // Section titre de catégorie
+        const catTitle = document.createElement('div');
+        catTitle.className = 'col-span-full mt-12 first:mt-0 mb-6';
+        catTitle.innerHTML = `
+          <div class="inline-flex items-center gap-3 rounded-full border border-white/15 bg-white/8 px-5 py-2.5">
+            <span class="h-2.5 w-2.5 rounded-full bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400"></span>
+            <h3 class="text-xl font-bold text-white">${categoryLabel(cat)}</h3>
+          </div>
+        `;
+        grid.appendChild(catTitle);
+        
+        // Projets de la catégorie
+        const catProjects = filtered.filter(p => p.category === cat);
+        catProjects.forEach(p => {
+          const card = document.createElement('div');
+          card.className = 'group rounded-2xl border border-white/10 bg-white/5 overflow-hidden cursor-pointer hover:border-white/20 transition-all relative aspect-video';
+          card.innerHTML = `
+            <img src="${p.image}" alt="${p.title}" onerror="this.src='https://via.placeholder.com/800x600?text=${encodeURIComponent(p.title)}'" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+            <div class="absolute inset-0 bg-gradient-to-t from-zinc-950 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-4">
+              <h4 class="font-bold text-white mb-2">${p.title}</h4>
+              <div class="flex gap-2 flex-wrap">
+                ${p.tags.map(t => `<span class="text-xs rounded px-2 py-1 bg-white/10 text-zinc-300">${t}</span>`).join('')}
+              </div>
+            </div>
+          `;
+          card.addEventListener('click', () => openModal(p));
+          grid.appendChild(card);
+        });
+      });
+    };
+
+    // Modal
+    const openModal = (project) => {
+      qs('#modalTitle').textContent = project.title;
+      qs('#modalCategory').textContent = categoryLabel(project.category);
+      const img = qs('#modalImg');
+      img.src = project.image;
+      img.onerror = () => img.src = `https://via.placeholder.com/800x600?text=${encodeURIComponent(project.title)}`;
+      qs('#modalDesc').textContent = project.desc;
+      qs('#modalDeliverables').innerHTML = project.deliverables.map(d => `<li class="flex items-start gap-2"><span class="text-white/60 mt-1">•</span><span>${d}</span></li>`).join('');
+      qs('#modal').classList.remove('hidden');
+    };
+
+    qs('#btnCloseModal').addEventListener('click', () => qs('#modal').classList.add('hidden'));
+
+    // Filters
+    qsa('.filterBtn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        qsa('.filterBtn').forEach(b => {
+          b.classList.remove('bg-white/10', 'text-white');
+          b.classList.add('bg-white/5', 'text-zinc-300');
+        });
+        btn.classList.remove('bg-white/5', 'text-zinc-300');
+        btn.classList.add('bg-white/10', 'text-white');
+        renderProjects(btn.dataset.filter);
+      });
+    });
+
+    // Year
+    qs('#year').textContent = new Date().getFullYear();
+
+    // Initialize
+    renderProjects();
+  </script>
+</body>
+</html>

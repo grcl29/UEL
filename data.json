@@ -1,0 +1,9 @@
+{
+  "projects": [
+    {"id": 1, "title": "Eco-Branding", "category": "branding", "img": "https://picsum.photos/600/400?random=1"},
+    {"id": 2, "title": "App Finance", "category": "uiux", "img": "https://picsum.photos/600/400?random=2"},
+    {"id": 3, "title": "Web Design Museum", "category": "web", "img": "https://picsum.photos/600/400?random=3"},
+    {"id": 4, "title": "Logo Concept", "category": "branding", "img": "https://picsum.photos/600/400?random=4"},
+    {"id": 5, "title": "Dashboard Admin", "category": "uiux", "img": "https://picsum.photos/600/400?random=5"}
+  ]
+}

@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UEL.MK | Portfolio Designer & CM</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <header>
+        <nav>
+            <div class="logo">UEL.MK</div>
+            <div class="hamburger-menu" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#accueil" class="active">Accueil</a></li>
+                <li><a href="#experiences">Expériences</a></li>
+                <li><a href="#projets">Projets réalisés</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="accueil" class="section active-section">
+            <div class="hero-content">
+                <h1>TOUT SAVOIR SUR MOI</h1>
+                <p class="subtitle">Pour apprendre à mieux me connaître</p>
+                
+                <div class="grid-about">
+                    <div class="card">
+                        <h3>ULM WORLD</h3>
+                        <p>Cette année j’ai créé un média qui se nomme <strong>ULM WORLD</strong>. Ce média est destiné à un public jeune, qui aime la création et l’information pour réveiller en eux leurs créativités avec des interviews, visuels et collabs inspirants.</p>
+                    </div>
+                    <div class="card">
+                        <h3>Imagination débordante</h3>
+                        <p>Je peux passer des heures à imaginer des choses, des visuels, des créations... Mon imagination est comme une éponge qui se sert de son environnement pour en extraire le meilleur.</p>
+                    </div>
+                    <div class="card">
+                        <h3>Éternel insatisfait</h3>
+                        <p>Je ne suis jamais réellement satisfait, ce qui me pousse à me remettre en question pour toujours donner le meilleur de moi-même.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="experiences" class="section">
+            <h2>PARCOURS & EXPÉRIENCES</h2>
+            <div class="timeline">
+                <div class="exp-box">
+                    <span class="date">2023 - Présent</span>
+                    <h3>ICC Association</h3>
+                    <p class="desc">Association de formation à la valorisation de l'image personnelle créée par Yvan Castanou.</p>
+                    <p>Dans cette association, j'ai pu élargir ma palette créative. Mes talents ont été mis en valeur à travers des programmes inspirants mettant les jeunes en avant.</p>
+                </div>
+                <div class="exp-box">
+                    <span class="date">Freelance</span>
+                    <h3>Bangou Lunch</h3>
+                    <p class="tag">Community Manager</p>
+                    <p>Chargé de la communication digitale, création de contenus visuels et gestion des réseaux sociaux pour ce restaurant afro-parisien.</p>
+                </div>
+                <div class="exp-box">
+                    <span class="date">Collaboration</span>
+                    <h3>Projets Divers</h3>
+                    <p>Mise à disposition de mes talents pour <strong>OH MY CARE</strong> et divers auteurs indépendants.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="projets" class="section">
+            <h2>PROJETS RÉALISÉS</h2>
+            <div class="filter-buttons">
+                <button class="filter-btn active" data-filter="all">Tous</button>
+                <button class="filter-btn" data-filter="branding">Branding</button>
+                <button class="filter-btn" data-filter="uiux">UI/UX</button>
+                <button class="filter-btn" data-filter="web">Web</button>
+            </div>
+            <div class="portfolio-grid" id="portfolioGrid">
+                <div class="project-card" data-category="branding">
+                    <div class="img-placeholder">ULM WORLD</div>
+                    <div class="project-info">
+                        <h4>Média ULM WORLD</h4>
+                        <p>Interviews, Covers, Reels & Posts</p>
+                        <span class="category-tag">Branding</span>
+                    </div>
+                </div>
+                <div class="project-card" data-category="branding">
+                    <div class="img-placeholder">LIVRE</div>
+                    <div class="project-info">
+                        <h4>Du Chaos à l'Ordre Divin</h4>
+                        <p>Design de couverture & Layout</p>
+                        <span class="category-tag">Branding</span>
+                    </div>
+                </div>
+                <div class="project-card" data-category="uiux">
+                    <div class="img-placeholder">BRANDING</div>
+                    <div class="project-info">
+                        <h4>Bangou Lunch</h4>
+                        <p>Identité visuelle & Réseaux Sociaux</p>
+                        <span class="category-tag">UI/UX</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="section">
+            <h2>CONTACT & RÉSEAUX</h2>
+            <div class="contact-container">
+                <div class="contact-form">
+                    <h3>Envoyez-moi un message</h3>
+                    <form id="contactForm" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+                        <div class="form-group">
+                            <input type="text" name="name" placeholder="Votre nom" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" name="email" placeholder="Votre email" required>
+                        </div>
+                        <div class="form-group">
+                            <textarea name="message" placeholder="Votre message" rows="5" required></textarea>
+                        </div>
+                        <button type="submit" class="btn-contact">Envoyer</button>
+                    </form>
+                    <p class="form-note" id="formNote" style="display: none; margin-top: 20px; color: #4CAF50; text-align: center;">✓ Message envoyé avec succès !</p>
+                </div>
+                
+                <div class="social-links">
+                    <h3>Suivez-moi</h3>
+                    <div class="socials">
+                        <a href="https://instagram.com" target="_blank" class="social-icon" title="Instagram">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.266.069 1.646.069 4.85 0 3.204-.012 3.584-.07 4.85-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.85-.07-3.251-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zM5.838 12a6.162 6.162 0 1 1 12.324 0 6.162 6.162 0 0 1-12.324 0zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm4.965-10.322a1.44 1.44 0 1 1 2.881.001 1.44 1.44 0 0 1-2.881-.001z"/>
+                            </svg>
+                        </a>
+                        <a href="https://linkedin.com" target="_blank" class="social-icon" title="LinkedIn">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.475-2.236-1.986-2.236-1.081 0-1.722.722-2.004 1.418-.103.249-.129.597-.129.945v5.442h-3.554s.05-8.832 0-9.753h3.554v1.381c.43-.664 1.202-1.61 2.923-1.61 2.135 0 3.735 1.394 3.735 4.396v5.586zM5.337 8.855c-1.144 0-1.915-.758-1.915-1.704 0-.948.77-1.704 1.956-1.704 1.184 0 1.915.756 1.937 1.704 0 .946-.753 1.704-1.937 1.704zm1.581 11.597H3.715V9.554h3.203v10.898zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.225 0z"/>
+                            </svg>
+                        </a>
+                        <a href="https://github.com" target="_blank" class="social-icon" title="GitHub">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v 3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                            </svg>
+                        </a>
+                        <a href="https://twitter.com" target="_blank" class="social-icon" title="Twitter">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M23.953 4.57a10 10 0 002.856-3.915 10.009 10.009 0 01-2.8.56 4.934 4.934 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="propos" class="section">
+            <h2>À PROPOS</h2>
+            <div class="about-footer">
+                <p>Designer, Créateur de contenu et Community Manager.</p>
+                <p>Besoin de donner vie à vos idées ? Travaillons ensemble.</p>
+                <a href="#contact" class="btn-contact">Me contacter</a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 UEL.MK | Designer, Créateur de contenu & Community Manager</p>
+        <p>Ensemble, créons quelque chose d'extraordinaire 🚀</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
