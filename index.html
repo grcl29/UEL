@@ -1,176 +1,675 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>UEL.MK | Portfolio Designer & CM</title>
-    <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&display=swap" rel="stylesheet">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>UEL.MK — Portfolio | Designer Montage Photo & Community Manager</title>
+  <meta name="description" content="Portfolio UEL.MK — Designer montage photo & community manager" />
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root { color-scheme: dark; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; }
+
+    .grain::before{
+      content:"";
+      position:fixed;
+      inset:0;
+      pointer-events:none;
+      z-index:0;
+      opacity:.06;
+      mix-blend-mode: overlay;
+      background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)' opacity='.55'/%3E%3C/svg%3E");
+    }
+
+    :focus-visible { outline: 2px solid rgba(255,255,255,.7); outline-offset: 2px; }
+
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-thumb { background: #3f3f46; border-radius: 8px; }
+    ::-webkit-scrollbar-track { background: #0a0a0a; }
+
+    @keyframes floaty { 0%,100%{ transform: translateY(0); } 50%{ transform: translateY(-8px); } }
+    .floaty { animation: floaty 6s ease-in-out infinite; }
+
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+    .fade-in { animation: fadeIn 0.6s ease-out forwards; }
+
+    .section.active .fade-in { animation-play-state: running; }
+  </style>
 </head>
-<body>
+<body class="grain bg-zinc-950 text-zinc-100 selection:bg-white/20 selection:text-white">
+  <!-- Background accents -->
+  <div aria-hidden="true" class="fixed inset-0 -z-10">
+    <div class="absolute -top-24 -left-28 h-96 w-96 rounded-full bg-white/6 blur-3xl"></div>
+    <div class="absolute top-1/3 -right-32 h-[500px] w-[500px] rounded-full bg-white/5 blur-3xl"></div>
+    <div class="absolute bottom-0 left-1/3 h-80 w-80 rounded-full bg-white/4 blur-3xl"></div>
+  </div>
 
-    <header>
-        <nav>
-            <div class="logo">UEL.MK</div>
-            <div class="hamburger-menu" id="hamburger">
-                <span></span>
-                <span></span>
-                <span></span>
+  <!-- Header -->
+  <header class="sticky top-0 z-40 border-b border-white/10 bg-zinc-950/80 backdrop-blur-xl">
+    <div class="mx-auto flex max-w-6xl items-center justify-between px-4 py-4">
+      <a href="#accueil" class="group inline-flex items-center gap-3">
+        <span class="relative grid h-11 w-11 place-items-center rounded-2xl border border-white/10 bg-white/5">
+          <span class="text-lg font-bold tracking-wider">U</span>
+          <span class="pointer-events-none absolute inset-0 rounded-2xl ring-1 ring-white/10 group-hover:ring-white/20 transition-all"></span>
+        </span>
+        <div class="leading-tight">
+          <div class="font-bold text-lg tracking-wide">UEL.MK</div>
+          <div class="text-xs text-zinc-400">Designer • CM • Créateur</div>
+        </div>
+      </a>
+
+      <nav class="hidden items-center gap-1 md:flex" aria-label="Navigation principale">
+        <a class="navlink rounded-xl px-4 py-2.5 text-sm font-medium text-zinc-300 hover:bg-white/5 hover:text-white transition-all" href="#accueil" data-section="accueil">Accueil</a>
+        <a class="navlink rounded-xl px-4 py-2.5 text-sm font-medium text-zinc-300 hover:bg-white/5 hover:text-white transition-all" href="#experiences" data-section="experiences">Expériences</a>
+        <a class="navlink rounded-xl px-4 py-2.5 text-sm font-medium text-zinc-300 hover:bg-white/5 hover:text-white transition-all" href="#projets" data-section="projets">Projets Réalisés</a>
+        <a class="navlink rounded-xl px-4 py-2.5 text-sm font-medium text-zinc-300 hover:bg-white/5 hover:text-white transition-all" href="#apropos" data-section="apropos">À Propos</a>
+      </nav>
+
+      <div class="flex items-center gap-3">
+        <a href="#apropos" class="hidden sm:inline-flex items-center justify-center rounded-xl bg-white px-5 py-2.5 text-sm font-semibold text-zinc-950 hover:bg-zinc-100 transition-all">
+          Me contacter
+        </a>
+        <button id="btnMenu" class="md:hidden inline-flex h-11 w-11 items-center justify-center rounded-xl border border-white/10 bg-white/5 hover:bg-white/10" aria-label="Ouvrir le menu" aria-expanded="false" type="button">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" class="text-white"><path d="M4 6h16M4 12h16M4 18h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div id="mobileMenu" class="md:hidden hidden border-t border-white/10 bg-zinc-950/95 backdrop-blur-xl">
+      <div class="mx-auto max-w-6xl px-4 py-4">
+        <div class="grid gap-2">
+          <a class="navlink rounded-xl px-4 py-3 text-sm font-medium text-zinc-200 hover:bg-white/5" href="#accueil">Accueil</a>
+          <a class="navlink rounded-xl px-4 py-3 text-sm font-medium text-zinc-200 hover:bg-white/5" href="#experiences">Expériences</a>
+          <a class="navlink rounded-xl px-4 py-3 text-sm font-medium text-zinc-200 hover:bg-white/5" href="#projets">Projets Réalisés</a>
+          <a class="navlink rounded-xl px-4 py-3 text-sm font-medium text-zinc-200 hover:bg-white/5" href="#apropos">À Propos</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Page Sections -->
+  <main>
+    <!-- ACCUEIL -->
+    <section id="accueil" class="section active min-h-screen relative z-10">
+      <div class="mx-auto max-w-6xl px-4 py-16 md:py-24">
+        <div class="grid items-center gap-12 lg:grid-cols-2">
+          <div class="fade-in">
+            <div class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-zinc-300">
+              <span class="h-2 w-2 rounded-full bg-white/80 animate-pulse"></span>
+              <span>Portfolio UEL.MK</span>
             </div>
-            <ul class="nav-links" id="navLinks">
-                <li><a href="#accueil" class="active">Accueil</a></li>
-                <li><a href="#experiences">Expériences</a></li>
-                <li><a href="#projets">Projets réalisés</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </nav>
-    </header>
+            
+            <h1 class="mt-8 text-5xl md:text-7xl font-bold tracking-tight leading-tight">
+              TOUT SAVOIR<br/>
+              <span class="text-zinc-400">SUR MOI</span>
+            </h1>
+            
+            <p class="mt-6 text-xl text-zinc-300 max-w-xl">
+              Pour apprendre à mieux me connaître
+            </p>
 
-    <main>
-        <section id="accueil" class="section active-section">
-            <div class="hero-content">
-                <h1>TOUT SAVOIR SUR MOI</h1>
-                <p class="subtitle">Pour apprendre à mieux me connaître</p>
+            <div class="mt-10 flex flex-wrap gap-4">
+              <a href="#experiences" class="inline-flex items-center justify-center rounded-2xl bg-white px-8 py-4 text-sm font-semibold text-zinc-950 hover:bg-zinc-100 transition-all">
+                Voir mes expériences
+                <svg class="ml-2" width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </a>
+              <a href="#projets" class="inline-flex items-center justify-center rounded-2xl border border-white/15 bg-white/5 px-8 py-4 text-sm font-semibold text-white hover:bg-white/10 transition-all">
+                Mes projets
+              </a>
+            </div>
+          </div>
+
+          <div class="fade-in" style="animation-delay: 0.2s">
+            <div class="relative">
+              <div class="floaty relative overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-b from-white/10 to-white/5 p-8">
+                <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(255,255,255,0.15),transparent_60%)]"></div>
+                <div class="relative space-y-8">
+                  <!-- J'ai créé un média -->
+                  <div class="rounded-2xl border border-white/10 bg-zinc-950/40 p-6">
+                    <div class="flex items-center gap-3 mb-4">
+                      <div class="grid h-12 w-12 place-items-center rounded-xl bg-white text-zinc-950">
+                        <span class="text-2xl font-bold">U</span>
+                      </div>
+                      <h3 class="text-xl font-bold">J'ai créé un média</h3>
+                    </div>
+                    <p class="text-zinc-300 leading-relaxed">
+                      Cette année j'ai créé un média qui se nomme <span class="text-white font-semibold">ULM WORLD</span>. Ce média est destiné à un public jeune, qui aime la création et l'information pour réveiller en eux leurs créativités avec des <span class="text-white">interviews</span>, <span class="text-white">visuels</span> et <span class="text-white">collabs</span> inspirants.
+                    </p>
+                  </div>
+
+                  <!-- J'ai beaucoup d'imagination -->
+                  <div class="rounded-2xl border border-white/10 bg-zinc-950/40 p-6">
+                    <div class="flex items-center gap-3 mb-4">
+                      <div class="grid h-12 w-12 place-items-center rounded-xl bg-white text-zinc-950">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 1 1 7.072 0l-.548.547A3.374 3.374 0 0 0 14 18.469V19a2 2 0 1 1-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+                      </div>
+                      <h3 class="text-xl font-bold">J'ai beaucoup d'imagination</h3>
+                    </div>
+                    <p class="text-zinc-300 leading-relaxed">
+                      Je peux passer des heures à imaginer des choses, des visuels, des créations, etc... J'aime souvent dire que <span class="text-white font-semibold">mon imagination est comme une éponge</span> qui se sert de son environnement pour après prendre le meilleur côté.
+                    </p>
+                  </div>
+
+                  <!-- Éternel insatisfait -->
+                  <div class="rounded-2xl border border-white/10 bg-zinc-950/40 p-6">
+                    <div class="flex items-center gap-3 mb-4">
+                      <div class="grid h-12 w-12 place-items-center rounded-xl bg-white text-zinc-950">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                      </div>
+                      <h3 class="text-xl font-bold">Je suis un éternel insatisfait</h3>
+                    </div>
+                    <p class="text-zinc-300 leading-relaxed">
+                      Je ne suis jamais réellement satisfait de ce que je fais, ce qui m'emmène parfois à <span class="text-white font-semibold">me remettre beaucoup en question</span> pour pouvoir donner le meilleur de moi-même.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- EXPÉRIENCES -->
+    <section id="experiences" class="section min-h-screen relative z-10 bg-gradient-to-b from-transparent via-zinc-950/50 to-transparent">
+      <div class="mx-auto max-w-6xl px-4 py-16 md:py-24">
+        <div class="text-center mb-16 fade-in">
+          <div class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-zinc-300 mb-6">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M21 13.255A23.931 23.931 0 0 1 12 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2m4 6h.01M5 20h14a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2z" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+            Mon Parcours
+          </div>
+          <h2 class="text-4xl md:text-5xl font-bold tracking-tight">Expériences</h2>
+          <p class="mt-4 text-zinc-400 max-w-2xl mx-auto">Un aperçu de mon parcours professionnel et de mes différentes collaborations.</p>
+        </div>
+
+        <div class="space-y-8">
+          <!-- ICC Association -->
+          <div class="fade-in rounded-3xl border border-white/10 bg-white/5 p-8 md:p-10 hover:bg-white/7 transition-all">
+            <div class="flex flex-col md:flex-row md:items-start md:justify-between gap-6">
+              <div class="flex-1">
+                <div class="flex items-center gap-4 mb-4">
+                  <div class="grid h-16 w-16 place-items-center rounded-2xl bg-white text-zinc-950">
+                    <span class="text-2xl font-bold">ICC</span>
+                  </div>
+                  <div>
+                    <h3 class="text-2xl font-bold">ICC Association</h3>
+                    <div class="flex items-center gap-3 mt-1">
+                      <span class="inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-zinc-300">
+                        <span class="h-1.5 w-1.5 rounded-full bg-green-500"></span>
+                        2023 — Présent
+                      </span>
+                      <span class="text-sm text-zinc-500">Créée en 2001 par YVAN CASTANOU</span>
+                    </div>
+                  </div>
+                </div>
                 
-                <div class="grid-about">
-                    <div class="card">
-                        <h3>ULM WORLD</h3>
-                        <p>Cette année j’ai créé un média qui se nomme <strong>ULM WORLD</strong>. Ce média est destiné à un public jeune, qui aime la création et l’information pour réveiller en eux leurs créativités avec des interviews, visuels et collabs inspirants.</p>
-                    </div>
-                    <div class="card">
-                        <h3>Imagination débordante</h3>
-                        <p>Je peux passer des heures à imaginer des choses, des visuels, des créations... Mon imagination est comme une éponge qui se sert de son environnement pour en extraire le meilleur.</p>
-                    </div>
-                    <div class="card">
-                        <h3>Éternel insatisfait</h3>
-                        <p>Je ne suis jamais réellement satisfait, ce qui me pousse à me remettre en question pour toujours donner le meilleur de moi-même.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="experiences" class="section">
-            <h2>PARCOURS & EXPÉRIENCES</h2>
-            <div class="timeline">
-                <div class="exp-box">
-                    <span class="date">2023 - Présent</span>
-                    <h3>ICC Association</h3>
-                    <p class="desc">Association de formation à la valorisation de l'image personnelle créée par Yvan Castanou.</p>
-                    <p>Dans cette association, j'ai pu élargir ma palette créative. Mes talents ont été mis en valeur à travers des programmes inspirants mettant les jeunes en avant.</p>
-                </div>
-                <div class="exp-box">
-                    <span class="date">Freelance</span>
-                    <h3>Bangou Lunch</h3>
-                    <p class="tag">Community Manager</p>
-                    <p>Chargé de la communication digitale, création de contenus visuels et gestion des réseaux sociaux pour ce restaurant afro-parisien.</p>
-                </div>
-                <div class="exp-box">
-                    <span class="date">Collaboration</span>
-                    <h3>Projets Divers</h3>
-                    <p>Mise à disposition de mes talents pour <strong>OH MY CARE</strong> et divers auteurs indépendants.</p>
-                </div>
-            </div>
-        </section>
-
-        <section id="projets" class="section">
-            <h2>PROJETS RÉALISÉS</h2>
-            <div class="filter-buttons">
-                <button class="filter-btn active" data-filter="all">Tous</button>
-                <button class="filter-btn" data-filter="branding">Branding</button>
-                <button class="filter-btn" data-filter="uiux">UI/UX</button>
-                <button class="filter-btn" data-filter="web">Web</button>
-            </div>
-            <div class="portfolio-grid" id="portfolioGrid">
-                <div class="project-card" data-category="branding">
-                    <div class="img-placeholder">ULM WORLD</div>
-                    <div class="project-info">
-                        <h4>Média ULM WORLD</h4>
-                        <p>Interviews, Covers, Reels & Posts</p>
-                        <span class="category-tag">Branding</span>
-                    </div>
-                </div>
-                <div class="project-card" data-category="branding">
-                    <div class="img-placeholder">LIVRE</div>
-                    <div class="project-info">
-                        <h4>Du Chaos à l'Ordre Divin</h4>
-                        <p>Design de couverture & Layout</p>
-                        <span class="category-tag">Branding</span>
-                    </div>
-                </div>
-                <div class="project-card" data-category="uiux">
-                    <div class="img-placeholder">BRANDING</div>
-                    <div class="project-info">
-                        <h4>Bangou Lunch</h4>
-                        <p>Identité visuelle & Réseaux Sociaux</p>
-                        <span class="category-tag">UI/UX</span>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="contact" class="section">
-            <h2>CONTACT & RÉSEAUX</h2>
-            <div class="contact-container">
-                <div class="contact-form">
-                    <h3>Envoyez-moi un message</h3>
-                    <form id="contactForm" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
-                        <div class="form-group">
-                            <input type="text" name="name" placeholder="Votre nom" required>
-                        </div>
-                        <div class="form-group">
-                            <input type="email" name="email" placeholder="Votre email" required>
-                        </div>
-                        <div class="form-group">
-                            <textarea name="message" placeholder="Votre message" rows="5" required></textarea>
-                        </div>
-                        <button type="submit" class="btn-contact">Envoyer</button>
-                    </form>
-                    <p class="form-note" id="formNote" style="display: none; margin-top: 20px; color: #4CAF50; text-align: center;">✓ Message envoyé avec succès !</p>
-                </div>
+                <p class="text-zinc-300 leading-relaxed mb-6">
+                  Association de formation à la valorisation de l'image personnelle. Disposant désormais de <span class="text-white font-semibold">plus de 120 entreprises</span> à travers le monde, elle est connue pour ses programmes inspirants mettant les jeunes en avant.
+                </p>
                 
-                <div class="social-links">
-                    <h3>Suivez-moi</h3>
-                    <div class="socials">
-                        <a href="https://instagram.com" target="_blank" class="social-icon" title="Instagram">
-                            <svg viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.266.069 1.646.069 4.85 0 3.204-.012 3.584-.07 4.85-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.85-.07-3.251-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zM5.838 12a6.162 6.162 0 1 1 12.324 0 6.162 6.162 0 0 1-12.324 0zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm4.965-10.322a1.44 1.44 0 1 1 2.881.001 1.44 1.44 0 0 1-2.881-.001z"/>
-                            </svg>
-                        </a>
-                        <a href="https://linkedin.com" target="_blank" class="social-icon" title="LinkedIn">
-                            <svg viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.475-2.236-1.986-2.236-1.081 0-1.722.722-2.004 1.418-.103.249-.129.597-.129.945v5.442h-3.554s.05-8.832 0-9.753h3.554v1.381c.43-.664 1.202-1.61 2.923-1.61 2.135 0 3.735 1.394 3.735 4.396v5.586zM5.337 8.855c-1.144 0-1.915-.758-1.915-1.704 0-.948.77-1.704 1.956-1.704 1.184 0 1.915.756 1.937 1.704 0 .946-.753 1.704-1.937 1.704zm1.581 11.597H3.715V9.554h3.203v10.898zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.225 0z"/>
-                            </svg>
-                        </a>
-                        <a href="https://github.com" target="_blank" class="social-icon" title="GitHub">
-                            <svg viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v 3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-                            </svg>
-                        </a>
-                        <a href="https://twitter.com" target="_blank" class="social-icon" title="Twitter">
-                            <svg viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M23.953 4.57a10 10 0 002.856-3.915 10.009 10.009 0 01-2.8.56 4.934 4.934 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
-                            </svg>
-                        </a>
-                    </div>
+                <div class="rounded-2xl border border-white/10 bg-zinc-950/40 p-6">
+                  <div class="flex items-center gap-2 mb-3">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" class="text-white"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    <span class="font-semibold text-white">Mon impact</span>
+                  </div>
+                  <p class="text-zinc-300">
+                    Association qui m'a fait confiance et qui m'a fait découvrir un nouveau monde en terme de création. Dans cette association j'ai pu élargir ma palette créative et mes talents ont pu être mis en valeurs lors de projets visuels et de communication.
+                  </p>
                 </div>
+              </div>
+
+              <div class="flex flex-wrap gap-2">
+                <span class="rounded-xl border border-white/10 bg-white/5 px-4 py-2 text-sm text-zinc-300">Formation</span>
+                <span class="rounded-xl border border-white/10 bg-white/5 px-4 py-2 text-sm text-zinc-300">Création visuelle</span>
+                <span class="rounded-xl border border-white/10 bg-white/5 px-4 py-2 text-sm text-zinc-300">Communication</span>
+              </div>
             </div>
-        </section>
+          </div>
 
-        <section id="propos" class="section">
-            <h2>À PROPOS</h2>
-            <div class="about-footer">
-                <p>Designer, Créateur de contenu et Community Manager.</p>
-                <p>Besoin de donner vie à vos idées ? Travaillons ensemble.</p>
-                <a href="#contact" class="btn-contact">Me contacter</a>
+          <!-- Bangou Lunch -->
+          <div class="fade-in rounded-3xl border border-white/10 bg-white/5 p-8 md:p-10 hover:bg-white/7 transition-all" style="animation-delay: 0.1s">
+            <div class="flex flex-col md:flex-row md:items-start md:justify-between gap-6">
+              <div class="flex-1">
+                <div class="flex items-center gap-4 mb-4">
+                  <div class="grid h-16 w-16 place-items-center rounded-2xl bg-white text-zinc-950">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none"><path d="M18 8h1a4 4 0 0 1 0 8h-1M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M6 1v3M10 1v3M14 1v3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+                  </div>
+                  <div>
+                    <h3 class="text-2xl font-bold">Bangou Lunch</h3>
+                    <p class="text-zinc-400">Restaurant afro-parisien</p>
+                    <span class="inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-zinc-300 mt-2">
+                      <span class="h-1.5 w-1.5 rounded-full bg-white/80"></span>
+                      Freelance Community Manager
+                    </span>
+                  </div>
+                </div>
+
+                <div class="mt-6 grid gap-4 md:grid-cols-3">
+                  <div class="rounded-xl border border-white/10 bg-zinc-950/40 p-5 text-center">
+                    <div class="grid h-12 w-12 place-items-center rounded-xl bg-white/5 mx-auto mb-3">
+                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="text-white"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+                    </div>
+                    <div class="font-semibold text-white">Communication</div>
+                    <div class="text-sm text-zinc-400 mt-1">Digitale & réseaux</div>
+                  </div>
+                  <div class="rounded-xl border border-white/10 bg-zinc-950/40 p-5 text-center">
+                    <div class="grid h-12 w-12 place-items-center rounded-xl bg-white/5 mx-auto mb-3">
+                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="text-white"><path d="M4 16l4.586-4.586a2 2 0 0 1 2.828 0L16 16m-2-2l1.586-1.586a2 2 0 0 1 2.828 0L20 14m-6-6h.01M6 20h12a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2z" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+                    </div>
+                    <div class="font-semibold text-white">Création</div>
+                    <div class="text-sm text-zinc-400 mt-1">Contenus visuels</div>
+                  </div>
+                  <div class="rounded-xl border border-white/10 bg-zinc-950/40 p-5 text-center">
+                    <div class="grid h-12 w-12 place-items-center rounded-xl bg-white/5 mx-auto mb-3">
+                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="text-white"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" stroke="currentColor" stroke-width="2"/><rect x="2" y="9" width="4" height="12" stroke="currentColor" stroke-width="2"/><circle cx="4" cy="4" r="2" stroke="currentColor" stroke-width="2"/></svg>
+                    </div>
+                    <div class="font-semibold text-white">Gestion</div>
+                    <div class="text-sm text-zinc-400 mt-1">Réseaux sociaux</div>
+                  </div>
+                </div>
+
+                <p class="text-zinc-300 mt-6">
+                  En parallèle de mes études, je travaillais en freelance comme Community Manager pour le restaurant afro-parisien Bangou Lunch, où j'étais chargé de la communication digitale, de la création de contenus visuels et de la gestion des réseaux sociaux.
+                </p>
+              </div>
             </div>
-        </section>
-    </main>
+          </div>
 
-    <footer>
-        <p>&copy; 2024 UEL.MK | Designer, Créateur de contenu & Community Manager</p>
-        <p>Ensemble, créons quelque chose d'extraordinaire 🚀</p>
-    </footer>
+          <!-- OH MY CARE -->
+          <div class="fade-in rounded-3xl border border-white/10 bg-white/5 p-8 md:p-10 hover:bg-white/7 transition-all" style="animation-delay: 0.2s">
+            <div class="flex flex-col md:flex-row md:items-start md:justify-between gap-6">
+              <div class="flex-1">
+                <div class="flex items-center gap-4 mb-4">
+                  <div class="grid h-16 w-16 place-items-center rounded-2xl bg-white text-zinc-950">
+                    <span class="text-xl font-bold">OMC</span>
+                  </div>
+                  <div>
+                    <h3 class="text-2xl font-bold">OH MY CARE</h3>
+                    <span class="inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-zinc-300 mt-2">
+                      <span class="h-1.5 w-1.5 rounded-full bg-white/80"></span>
+                      Collaborations multiples
+                    </span>
+                  </div>
+                </div>
+                <p class="text-zinc-300">
+                  De plus, j'ai pu mettre mes talents à la disposition d'autres entreprises comme OH MY CARE, pour des missions de création visuelle et de gestion de communauté.
+                </p>
+              </div>
+            </div>
+          </div>
 
-    <script src="script.js"></script>
-</body>
-</html>
+          <!-- Créations pour auteurs -->
+          <div class="fade-in rounded-3xl border border-white/10 bg-gradient-to-br from-white/10 to-white/5 p-8 md:p-10" style="animation-delay: 0.3s">
+            <div class="text-center mb-8">
+              <div class="inline-flex items-center gap-2 mb-4">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="text-white"><path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                <h3 class="text-xl font-bold">CERTAINES DE MES CRÉATIONS POUR DES AUTEURS</h3>
+              </div>
+            </div>
+            
+            <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+              <div class="rounded-2xl border border-white/10 bg-zinc-950/40 p-6 text-center hover:bg-white/5 transition-all">
+                <div class="grid h-20 w-20 place-items-center rounded-2xl bg-white mx-auto mb-4">
+                  <svg width="36" height="36" viewBox="0 0 24 24" fill="none" class="text-zinc-950"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" stroke="currentColor" stroke-width="2"/></svg>
+                </div>
+                <h4 class="font-bold text-lg mb-2">Du Chaos À L'Ordre Divin</h4>
+                <p class="text-sm text-zinc-400">Livre — Design de couverture & visuels promotionnels</p>
+              </div>
+              
+              <div class="rounded-2xl border border-white/10 bg-zinc-950/40 p-6 text-center hover:bg-white/5 transition-all">
+                <div class="grid h-20 w-20 place-items-center rounded-2xl bg-white mx-auto mb-4">
+                  <svg width="36" height="36" viewBox="0 0 24 24" fill="none" class="text-zinc-950"><path d="M15 10l4.553-2.276A1 1 0 0 1 21 8.618v6.764a1 1 0 0 1-1.447.894L15 14M5 18h8a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2z" stroke="currentColor" stroke-width="2"/></svg>
+                </div>
+                <h4 class="font-bold text-lg mb-2">ULM WORLD</h4>
+                <p class="text-sm text-zinc-400">Mon média — Interviews, Covers, Reels & Posts</p>
+              </div>
+              
+              <div class="rounded-2xl border border-white/10 bg-zinc-950/40 p-6 text-center hover:bg-white/5 transition-all">
+                <div class="grid h-20 w-20 place-items-center rounded-2xl bg-white mx-auto mb-4">
+                  <svg width="36" height="36" viewBox="0 0 24 24" fill="none" class="text-zinc-950"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </div>
+                <h4 class="font-bold text-lg mb-2">Designer</h4>
+                <p class="text-sm text-zinc-400">Montage photo, Direction artistique & Création</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROJETS RÉALISÉS -->
+    <section id="projets" class="section min-h-screen relative z-10 bg-gradient-to-b from-transparent via-zinc-950/50 to-transparent">
+      <div class="mx-auto max-w-6xl px-4 py-16 md:py-24">
+        <div class="text-center mb-16 fade-in">
+          <div class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-zinc-300 mb-6">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M4 16l4.586-4.586a2 2 0 0 1 2.828 0L16 16m-2-2l1.586-1.586a2 2 0 0 1 2.828 0L20 14m-6-6h.01M6 20h12a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2z" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+            Portfolio
+          </div>
+          <h2 class="text-4xl md:text-5xl font-bold tracking-tight">Projets Réalisés</h2>
+          <p class="mt-4 text-zinc-400 max-w-2xl mx-auto">Découvrez une sélection de mes meilleurs projets et créations.</p>
+        </div>
+
+        <!-- Filters -->
+        <div class="flex flex-wrap justify-center gap-3 mb-12 fade-in">
+          <button class="filterBtn rounded-full border border-white/10 bg-white/10 px-6 py-2.5 text-sm font-medium text-white" data-filter="all">Tous</button>
+          <button class="filterBtn rounded-full border border-white/10 bg-white/5 px-6 py-2.5 text-sm font-medium text-zinc-300 hover:bg-white/10 transition-all" data-filter="ulm">ULM WORLD</button>
+          <button class="filterBtn rounded-full border border-white/10 bg-white/5 px-6 py-2.5 text-sm font-medium text-zinc-300 hover:bg-white/10 transition-all" data-filter="ICC">ICC</button>
+          <button class="filterBtn rounded-full border border-white/10 bg-white/5 px-6 py-2.5 text-sm font-medium text-zinc-300 hover:bg-white/10 transition-all" data-filter="restaurant">Restaurant</button>
+          <button class="filterBtn rounded-full border border-white/10 bg-white/5 px-6 py-2.5 text-sm font-medium text-zinc-300 hover:bg-white/10 transition-all" data-filter="auteur">Auteurs</button>
+        </div>
+
+        <!-- Grid -->
+        <div id="projectsGrid" class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          <!-- Projects will be generated by JS -->
+        </div>
+
+        <!-- CTA -->
+        <div class="mt-16 rounded-3xl border border-white/10 bg-white/5 p-8 md:p-10 text-center fade-in">
+          <h3 class="text-2xl font-bold mb-4">Un projet en tête ?</h3>
+          <p class="text-zinc-300 mb-6 max-w-xl mx-auto">Discutons de votre projet de création, de community management ou de direction artistique.</p>
+          <a href="#apropos" class="inline-flex items-center justify-center rounded-2xl bg-white px-8 py-4 text-sm font-semibold text-zinc-950 hover:bg-zinc-100 transition-all">
+            Me contacter
+            <svg class="ml-2" width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- À PROPOS -->
+    <section id="apropos" class="section min-h-screen relative z-10">
+      <div class="mx-auto max-w-6xl px-4 py-16 md:py-24">
+        <div class="grid items-center gap-12 lg:grid-cols-2">
+          <div class="fade-in">
+            <div class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-zinc-300 mb-6">
+              <span class="h-2 w-2 rounded-full bg-white/80"></span>
+              Me contacter
+            </div>
+            <h2 class="text-4xl md:text-5xl font-bold tracking-tight mb-6">À Propos</h2>
+            <p class="text-zinc-300 text-lg leading-relaxed mb-8">
+              Designer montage photo et Community Manager passionné par la création visuelle et le storytelling digital. Je transforme vos idées en visuels impactants.
+            </p>
+
+            <!-- Contact Cards -->
+            <div class="space-y-4">
+              <div class="rounded-2xl border border-white/10 bg-white/5 p-6">
+                <div class="flex items-center justify-between gap-4">
+                  <div>
+                    <div class="text-sm text-zinc-400 mb-1">Email</div>
+                    <div class="font-semibold text-lg" id="emailValue">uelmk.contact@email.com</div>
+                  </div>
+                  <button id="btnCopyEmail" class="inline-flex items-center gap-2 rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-zinc-200 hover:bg-white/10 transition-all">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M9 9h10v10H9z" stroke="currentColor" stroke-width="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" stroke="currentColor" stroke-width="2"/></svg>
+                    Copier
+                  </button>
+                </div>
+              </div>
+
+              <div class="rounded-2xl border border-white/10 bg-white/5 p-6">
+                <div class="text-sm text-zinc-400 mb-3">Réseaux sociaux</div>
+                <div class="flex flex-wrap gap-3">
+                  <a href="#" target="_blank" rel="noreferrer" class="inline-flex items-center gap-2 rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-zinc-200 hover:bg-white/10 transition-all">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5Z" stroke="currentColor" stroke-width="2"/><path d="M12 17a5 5 0 1 0 0-10 5 5 0 0 0 0 10Z" stroke="currentColor" stroke-width="2"/><path d="M17.5 6.5h.01" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></svg>
+                    Instagram
+                  </a>
+                  <a href="#" target="_blank" rel="noreferrer" class="inline-flex items-center gap-2 rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-zinc-200 hover:bg-white/10 transition-all">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M4 7h16v10H4z" stroke="currentColor" stroke-width="2"/><path d="M7 7V5a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v2" stroke="currentColor" stroke-width="2"/><path d="M8 17h8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+                    Behance
+                  </a>
+                  <a href="#" target="_blank" rel="noreferrer" class="inline-flex items-center gap-2 rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-zinc-200 hover:bg-white/10 transition-all">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M16 8a6 6 0 0 1 6 6v7H2V14a6 6 0 0 1 6-6h8Z" stroke="currentColor" stroke-width="2"/><path d="M8 8V6a4 4 0 1 1 8 0v2" stroke="currentColor" stroke-width="2"/></svg>
+                    LinkedIn
+                  </a>
+                </div>
+              </div>
+
+              <div class="rounded-2xl border border-white/10 bg-white/5 p-6">
+                <div class="text-sm text-zinc-400 mb-1">Disponibilité</div>
+                <div class="font-semibold text-white">Lun–Sam • 09:00–20:00</div>
+                <div class="text-sm text-zinc-400 mt-1">Réponse généralement sous 24h</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Form -->
+          <div class="fade-in" style="animation-delay: 0.2s">
+            <form id="contactForm" class="rounded-3xl border border-white/10 bg-white/5 p-8">
+              <h3 class="text-xl font-bold mb-2">Parlons de votre projet</h3>
+              <p class="text-zinc-400 mb-6">Remplissez ce formulaire et je vous répondrai rapidement.</p>
+
+              <div class="grid gap-4">
+                <label class="grid gap-2">
+                  <span class="text-sm text-zinc-200">Nom</span>
+                  <input id="name" class="w-full rounded-xl border border-white/10 bg-zinc-950/40 px-4 py-3 text-sm text-white placeholder:text-zinc-500 focus:border-white/30 focus:outline-none transition-all" placeholder="Votre nom" autocomplete="name" />
+                </label>
+                <label class="grid gap-2">
+                  <span class="text-sm text-zinc-200">Email</span>
+                  <input id="email" type="email" class="w-full rounded-xl border border-white/10 bg-zinc-950/40 px-4 py-3 text-sm text-white placeholder:text-zinc-500 focus:border-white/30 focus:outline-none transition-all" placeholder="votre@email.com" autocomplete="email" />
+                </label>
+                <label class="grid gap-2">
+                  <span class="text-sm text-zinc-200">Sujet</span>
+                  <select id="subject" class="w-full rounded-xl border border-white/10 bg-zinc-950/40 px-4 py-3 text-sm text-white focus:border-white/30 focus:outline-none transition-all">
+                    <option value="">Choisir un sujet...</option>
+                    <option value="Projet de montage photo">Projet de montage photo</option>
+                    <option value="Community management">Community management</option>
+                    <option value="Création de contenu">Création de contenu</option>
+                    <option value="Direction artistique">Direction artistique</option>
+                    <option value="Autre">Autre</option>
+                  </select>
+                </label>
+                <label class="grid gap-2">
+                  <span class="text-sm text-zinc-200">Message</span>
+                  <textarea id="message" rows="4" class="w-full resize-y rounded-xl border border-white/10 bg-zinc-950/40 px-4 py-3 text-sm text-white placeholder:text-zinc-500 focus:border-white/30 focus:outline-none transition-all" placeholder="Décrivez votre projet..."></textarea>
+                </label>
+              </div>
+
+              <div class="mt-6 flex flex-wrap items-center justify-between gap-3">
+                <button type="button" id="btnFillDemo" class="rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm font-semibold text-zinc-200 hover:bg-white/10 transition-all">Remplir démo</button>
+                <button type="submit" class="rounded-xl bg-white px-6 py-3 text-sm font-semibold text-zinc-950 hover:bg-zinc-100 transition-all">Envoyer</button>
+              </div>
+
+              <div id="formHint" class="mt-4 hidden rounded-xl border border-white/10 bg-zinc-950/40 p-4 text-sm text-zinc-200"></div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="border-t border-white/10 relative z-10">
+    <div class="mx-auto max-w-6xl px-4 py-10">
+      <div class="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
+        <div>
+          <div class="font-bold text-lg">UEL.MK</div>
+          <div class="text-sm text-zinc-400">Designer • Montage Photo • Community Manager</div>
+        </div>
+        <div class="flex flex-wrap gap-2 text-xs text-zinc-400">
+          <a class="rounded-full border border-white/10 bg-white/5 px-4 py-2 hover:bg-white/10 transition-all" href="#accueil">Accueil</a>
+          <a class="rounded-full border border-white/10 bg-white/5 px-4 py-2 hover:bg-white/10 transition-all" href="#experiences">Expériences</a>
+          <a class="rounded-full border border-white/10 bg-white/5 px-4 py-2 hover:bg-white/10 transition-all" href="#projets">Projets</a>
+          <a class="rounded-full border border-white/10 bg-white/5 px-4 py-2 hover:bg-white/10 transition-all" href="#apropos">À Propos</a>
+        </div>
+        <div class="text-sm text-zinc-400">
+          © <span id="year"></span> UEL.MK
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Modal -->
+  <div id="modal" class="fixed inset-0 z-50 hidden">
+    <div class="absolute inset-0 bg-black/80 backdrop-blur-sm"></div>
+    <div class="relative mx-auto flex h-full max-w-5xl items-end p-4 sm:items-center">
+      <div class="w-full overflow-hidden rounded-3xl border border-white/10 bg-zinc-950">
+        <div class="flex items-center justify-between border-b border-white/10 bg-white/5 px-6 py-4">
+          <div>
+            <div id="modalTitle" class="font-bold text-lg">Projet</div>
+            <div id="modalCategory" class="text-xs text-zinc-400">Catégorie</div>
+          </div>
+          <button id="btnCloseModal" class="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-white/10 bg-white/5 hover:bg-white/10" aria-label="Fermer" type="button">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M6 6l12 12M18 6l-12 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          </button>
+        </div>
+
+        <div class="grid gap-0 md:grid-cols-2">
+          <div class="border-b border-white/10 md:border-b-0 md:border-r border-white/10">
+            <img id="modalImg" alt="Aperçu du projet" class="h-80 w-full object-cover md:h-full" />
+          </div>
+          <div class="p-6">
+            <div class="text-sm text-zinc-300" id="modalDesc"></div>
+            <div class="mt-5">
+              <div class="text-xs text-zinc-400 mb-2">Livrables</div>
+              <ul id="modalDeliverables" class="space-y-2 text-sm text-zinc-200"></ul>
+            </div>
+            <div class="mt-6">
+              <a href="#apropos" id="btnModalContact" class="inline-flex items-center justify-center rounded-xl bg-white px-5 py-3 text-sm font-semibold text-zinc-950 hover:bg-zinc-100 transition-all">Me contacter pour ce type de projet</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast -->
+  <div id="toast" class="fixed bottom-4 left-1/2 z-50 hidden -translate-x-1/2">
+    <div class="rounded-2xl border border-white/10 bg-zinc-950/90 px-5 py-3 text-sm text-zinc-200 backdrop-blur shadow-xl">
+      <span id="toastText">Copié !</span>
+    </div>
+  </div>
+
+  <script>
+    const qs = (sel) => document.querySelector(sel);
+    const qsa = (sel) => Array.from(document.querySelectorAll(sel));
+
+    // Toast
+    const toast = (msg) => {
+      const t = qs('#toast');
+      qs('#toastText').textContent = msg;
+      t.classList.remove('hidden');
+      clearTimeout(window.toastTimer);
+      window.toastTimer = setTimeout(() => t.classList.add('hidden'), 2000);
+    };
+
+    // Mobile Menu
+    const btnMenu = qs('#btnMenu');
+    const mobileMenu = qs('#mobileMenu');
+    btnMenu?.addEventListener('click', () => {
+      const isOpen = btnMenu.getAttribute('aria-expanded') === 'true';
+      btnMenu.setAttribute('aria-expanded', String(!isOpen));
+      mobileMenu.classList.toggle('hidden');
+    });
+    qsa('#mobileMenu a').forEach(a => a.addEventListener('click', () => {
+      mobileMenu.classList.add('hidden');
+      btnMenu.setAttribute('aria-expanded', 'false');
+    }));
+
+    // Projects Data (remplacez les images par vos propres fichiers)
+    const projects = [
+      { id: 'p1', category: 'ulm', title: 'ULM WORLD — Interview Cover', tags: ['Interview', 'Cover'], desc: 'Création de visuels pour les interviews du média ULM WORLD.', image: 'images/ulm-1.jpg', deliverables: ['Cover Instagram', 'Story template', 'Reel thumbnail'] },
+      { id: 'p2', category: 'ulm', title: 'ULM WORLD — Promo Post', tags: ['Promo', 'Post'], desc: 'Visuels promotionnels pour les contenus du média.', image: 'images/ulm-2.jpg',deliverables: ['Posts feed', 'Stories animées', 'Affiches promo'] },
+      { id: 'p3', category: 'ulm', title: 'ULM WORLD — Collabs', tags: ['Collaboration'], desc: 'Créations pour les collaborations avec partenaires.', image: 'images/ulm-3.jpg', deliverables: ['Visuels collab', 'Posts partenaires'] },
+      { id: 'p4', category: 'ICC', title: 'ICC — Formation', tags: ['Formation'], desc: 'Visuels de communication pour les programmes.', image: 'images/icc-1.png', deliverables: ['Affiche programme', 'Visuels réseaux'] },
+      { id: 'p5', category: 'ICC', title: 'ICC — Événementiel', tags: ['Événement'], desc: 'Créations pour les événements de ICC.', image: 'images/icc-2.jpg', deliverables: ['Banners web', 'Stories événement'] },
+      { id: 'p6', category: 'restaurant', title: 'Bangou Lunch — Menu Digital', tags: ['Restaurant'], desc: 'Menu digital et visuels de présentation.', image: 'images/bangou.png', deliverables: ['Menu digital', 'Visuels plats'] },
+      { id: 'p7', category: 'restaurant', title: 'Bangou Lunch — Social Media', tags: ['CM', 'Contenu'], desc: 'Gestion complète des réseaux sociaux.', image: 'images/bangou.png', deliverables: ['Calendrier contenu', 'Posts créatifs'] },
+      { id: 'p8', category: 'auteur', title: 'Du Chaos À L\'Ordre Divin', tags: ['Livre'], desc: 'Design de la couverture du livre.', image: 'images/livre-1.jpg', deliverables: ['Couverture livre', 'Visuels promo'] }
+    ];
+
+    const categoryLabel = (cat) => ({ 'ulm': 'ULM WORLD', 'ICC': 'ICC Association', 'restaurant': 'Restaurant & Food', 'auteur': 'Auteurs & Édition' }[cat] || cat);
+
+    // Render Projects
+    const renderProjects = (filter = 'all') => {
+      const grid = qs('#projectsGrid');
+      grid.innerHTML = '';
+      
+      const filtered = filter === 'all' ? projects : projects.filter(p => p.category === filter);
+      const categories = [...new Set(filtered.map(p => p.category))];
+      
+      categories.forEach(cat => {
+        // Section titre de catégorie
+        const catTitle = document.createElement('div');
+        catTitle.className = 'col-span-full mt-12 first:mt-0 mb-6';
+        catTitle.innerHTML = `
+          <div class="inline-flex items-center gap-3 rounded-full border border-white/15 bg-white/8 px-5 py-2.5">
+            <span class="h-2.5 w-2.5 rounded-full bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400"></span>
+            <h3 class="text-xl font-bold text-white">${categoryLabel(cat)}</h3>
+          </div>
+        `;
+        grid.appendChild(catTitle);
+        
+        // Projets de la catégorie
+        const catProjects = filtered.filter(p => p.category === cat);
+        catProjects.forEach(p => {
+          const card = document.createElement('div');
+          card.className = 'group rounded-2xl border border-white/10 bg-white/5 overflow-hidden cursor-pointer hover:border-white/20 transition-all relative aspect-video';
+          card.innerHTML = `
+            <img src="${p.image}" alt="${p.title}" onerror="this.src='https://via.placeholder.com/800x600?text=${encodeURIComponent(p.title)}'" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+            <div class="absolute inset-0 bg-gradient-to-t from-zinc-950 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-4">
+              <h4 class="font-bold text-white mb-2">${p.title}</h4>
+              <div class="flex gap-2 flex-wrap">
+                ${p.tags.map(t => `<span class="text-xs rounded px-2 py-1 bg-white/10 text-zinc-300">${t}</span>`).join('')}
+              </div>
+            </div>
+          `;
+          card.addEventListener('click', () => openModal(p));
+          grid.appendChild(card);
+        });
+      });
+    };
+
+    // Modal
+    const openModal = (project) => {
+      qs('#modalTitle').textContent = project.title;
+      qs('#modalCategory').textContent = categoryLabel(project.category);
+      const img = qs('#modalImg');
+      img.src = project.image;
+      img.onerror = () => img.src = `https://via.placeholder.com/800x600?text=${encodeURIComponent(project.title)}`;
+      qs('#modalDesc').textContent = project.desc;
+      qs('#modalDeliverables').innerHTML = project.deliverables.map(d => `<li class="flex items-start gap-2"><span class="text-white/60 mt-1">•</span><span>${d}</span></li>`).join('');
+      qs('#modal').classList.remove('hidden');
+    };
+
+    qs('#btnCloseModal').addEventListener('click', () => qs('#modal').classList.add('hidden'));
+
+    // Filters
+    qsa('.filterBtn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        qsa('.filterBtn').forEach(b => {
+          b.classList.remove('bg-white/10', 'text-white');
+          b.classList.add('bg-white/5', 'text-zinc-300');
+        });
+        btn.classList.remove('bg-white/5', 'text-zinc-300');
+        btn.classList.add('bg-white/10', 'text-white');
+        renderProjects(btn.dataset.filter);
+      });
+    });
+
+    // Copy Email
+    qs('#btnCopyEmail')?.addEventListener('click', () => {
+      const email = qs('#emailValue').textContent;
+      navigator.clipboard.writeText(email).then(() => toast('Email copié !'));
+    });
+
+    // Demo Form
+    qs('#btnFillDemo')?.addEventListener('click', () => {
+      qs('#name').value = 'Jean Dupont';
+      qs('#email').value = 'jean@example.com';
+      qs('#subject').value = 'Community management';
+      qs('#message').value = 'Je suis intéressé par vos services de community management...';
+    });
+
+    // Form Submit
+    qs('#contactForm')?.addEventListener('submit', (e) => {
+      // Formspree gère la soumission automatiquement
+      console.log('Formulaire soumis');
+    });
+
+    // Year
+    qs('#year').textContent = new Date().getFullYear();
+
+    // Initialize
+    renderProjects();
+  </script>
